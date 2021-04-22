@@ -14,8 +14,10 @@
  */
 --%>
 
+
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui" %>
 
 <portlet:defineObjects />
 
-This is the <b>anyArtifactId 3asdfasdfasdfasdfasdfasdf</b>
+This is the <b>WIEW 334567890</b>

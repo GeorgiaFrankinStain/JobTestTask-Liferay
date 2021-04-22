@@ -7,6 +7,10 @@
 	<packaging>war</packaging>
 	<name>anyArtifactId Portlet</name>
 	<version>1.0-SNAPSHOT</version>
+	<properties>
+		<liferay.version>6.2.5</liferay.version>
+		<liferay.maven.plugin.version>6.2.5</liferay.maven.plugin.version>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -16,9 +20,6 @@
 				<executions>
 					<execution>
 						<phase>generate-sources</phase>
-						<goals>
-							<goal>build-css</goal>
-						</goals>
 					</execution>
 				</executions>
 				<configuration>
