@@ -5,27 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50872c84-b29a-4cc4-8a91-bf9b0fff2afd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries-with-intellij-classes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/test_task.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/artefactDontKnowWhy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/trash.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/servlet_api.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/anyArtifactId.iml" beforeDir="false" afterPath="$PROJECT_DIR$/anyArtifactId.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../plan.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../plan.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ListEmployees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListEmployees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/portlet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/portlet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/edit_entry.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/edit_entry.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/view2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/view2.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/classes/ListEmployees.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/liferay-display.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/liferay-plugin-package.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/liferay-portlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/portlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/view.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/views/edit_entry.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/anyArtifactId-1.0-SNAPSHOT/views/view2.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ListEmployees.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -76,19 +91,48 @@
     <property name="project.structure.side.proportion" value="0.39267015" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Maven.compiled anyArtifactId [clean,package]">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="anyArtifactId [clean,package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+    <configuration name="automata anyArtifactId [liferay:deploy]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="liferay:deploy" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map>
+                <entry key="621" value="true" />
+              </map>
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="compiled anyArtifactId [clean,package]" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -114,6 +158,10 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Maven.compiled anyArtifactId [clean,package]" />
+      <item itemvalue="Maven.automata anyArtifactId [liferay:deploy]" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

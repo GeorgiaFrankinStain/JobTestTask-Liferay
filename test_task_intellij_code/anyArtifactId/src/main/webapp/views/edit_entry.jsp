@@ -5,6 +5,7 @@
   Time: 12:42
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui" %>
 <portlet:defineObjects />
