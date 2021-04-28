@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.docs.eventlisting.model.Worker" %>
+<%@ page import="com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 23.04.2021
@@ -15,21 +17,47 @@
 </portlet:renderURL>
 
 <portlet:actionURL name="addEntry" var="addEntryURL"></portlet:actionURL>
+<%
+//    String name = ParamUtil.getString(request, "name");
+    String nameWorker = "";
+    String lastnameWorker = "";
+    String patronymicWorker = "";
+    Worker worker = null;
+
+    long id = ParamUtil.getLong(request, "workerId");
+    boolean isWorkerExist;
+    if (id == 0) {
+        isWorkerExist = false;
+    } else {
+        worker = WorkerLocalServiceUtil.findById(id);
+        isWorkerExist = worker != null;
+    }
+    if (isWorkerExist) {
+        nameWorker = worker.getName();
+        lastnameWorker = worker.getLastname();
+        patronymicWorker = worker.getPatronymic();
+    }
+%>
 
 <aui:form action="<%= addEntryURL %>" name="<portlet:namespace />fm">
 
     <aui:fieldset>
-
-        <aui:input name="name"></aui:input>
-        <aui:input name="lastname"></aui:input>
-        <aui:input name="patronymic"></aui:input>
-
+        <aui:input name="name" label="Name" value="<%= nameWorker %>"></aui:input>
+        <aui:input name="lastname" label="Lastname" value="<%= lastnameWorker %>"></aui:input>
+        <aui:input name="patronymic" label="Patronymic" value="<%= patronymicWorker %>"></aui:input>
+        <aui:input name="gender" label="Gender" checked="true" type="checkbox"/>
+        <aui:input name="date_of_birth" label="Date of birth" type="date"/>
+        <aui:input name="position" label="Position" type="text"/>
+        <aui:input name="date_of_employment" label="Date of employment" type="date"/>
+        <aui:input name="salary_level" label="Salary level" type="number"/>
+        <aui:input name="work_number" label="Work number" type="tel"/>
+        <aui:input name="telephone_number" label="Telephone number" type="tel"/>
+        <aui:input name="banking_organization" label="Banking organization" type="number"/>
+        <aui:input name="archival_status" label="Archival status" type="checkbox"/>
     </aui:fieldset>
 
     <aui:button-row>
-
         <aui:button type="submit"></aui:button>
         <aui:button type="cancel" onClick="<%= viewURL.toString() %>"></aui:button>
-
     </aui:button-row>
 </aui:form>

@@ -275,6 +275,13 @@ public class WorkerLocalServiceUtil {
         return getService().findAll();
     }
 
+    public static com.liferay.docs.eventlisting.model.Worker findById(
+        long workerId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().findById(workerId);
+    }
+
     public static void clearService() {
         _service = null;
     }

@@ -19,6 +19,7 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,9 +48,18 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
             { "workerId", Types.BIGINT },
             { "name", Types.VARCHAR },
             { "lastname", Types.VARCHAR },
-            { "patronymic", Types.VARCHAR }
+            { "patronymic", Types.VARCHAR },
+            { "gender", Types.BOOLEAN },
+            { "date_of_birth", Types.TIMESTAMP },
+            { "position", Types.VARCHAR },
+            { "date_of_employment", Types.TIMESTAMP },
+            { "salary_level", Types.BIGINT },
+            { "work_number", Types.VARCHAR },
+            { "telephone_number", Types.VARCHAR },
+            { "banking_organization", Types.BIGINT },
+            { "archival_status", Types.BOOLEAN }
         };
-    public static final String TABLE_SQL_CREATE = "create table Event_Worker (workerId LONG not null primary key,name VARCHAR(75) null,lastname VARCHAR(75) null,patronymic VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table Event_Worker (workerId LONG not null primary key,name VARCHAR(75) null,lastname VARCHAR(75) null,patronymic VARCHAR(75) null,gender BOOLEAN,date_of_birth DATE null,position VARCHAR(75) null,date_of_employment DATE null,salary_level LONG,work_number VARCHAR(75) null,telephone_number VARCHAR(75) null,banking_organization LONG,archival_status BOOLEAN)";
     public static final String TABLE_SQL_DROP = "drop table Event_Worker";
     public static final String ORDER_BY_JPQL = " ORDER BY worker.workerId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY Event_Worker.workerId ASC";
@@ -71,6 +81,15 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     private String _name;
     private String _lastname;
     private String _patronymic;
+    private boolean _gender;
+    private Date _date_of_birth;
+    private String _position;
+    private Date _date_of_employment;
+    private long _salary_level;
+    private String _work_number;
+    private String _telephone_number;
+    private long _banking_organization;
+    private boolean _archival_status;
     private Worker _escapedModel;
 
     public WorkerModelImpl() {
@@ -114,6 +133,15 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         attributes.put("name", getName());
         attributes.put("lastname", getLastname());
         attributes.put("patronymic", getPatronymic());
+        attributes.put("gender", getGender());
+        attributes.put("date_of_birth", getDate_of_birth());
+        attributes.put("position", getPosition());
+        attributes.put("date_of_employment", getDate_of_employment());
+        attributes.put("salary_level", getSalary_level());
+        attributes.put("work_number", getWork_number());
+        attributes.put("telephone_number", getTelephone_number());
+        attributes.put("banking_organization", getBanking_organization());
+        attributes.put("archival_status", getArchival_status());
 
         return attributes;
     }
@@ -142,6 +170,61 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
 
         if (patronymic != null) {
             setPatronymic(patronymic);
+        }
+
+        Boolean gender = (Boolean) attributes.get("gender");
+
+        if (gender != null) {
+            setGender(gender);
+        }
+
+        Date date_of_birth = (Date) attributes.get("date_of_birth");
+
+        if (date_of_birth != null) {
+            setDate_of_birth(date_of_birth);
+        }
+
+        String position = (String) attributes.get("position");
+
+        if (position != null) {
+            setPosition(position);
+        }
+
+        Date date_of_employment = (Date) attributes.get("date_of_employment");
+
+        if (date_of_employment != null) {
+            setDate_of_employment(date_of_employment);
+        }
+
+        Long salary_level = (Long) attributes.get("salary_level");
+
+        if (salary_level != null) {
+            setSalary_level(salary_level);
+        }
+
+        String work_number = (String) attributes.get("work_number");
+
+        if (work_number != null) {
+            setWork_number(work_number);
+        }
+
+        String telephone_number = (String) attributes.get("telephone_number");
+
+        if (telephone_number != null) {
+            setTelephone_number(telephone_number);
+        }
+
+        Long banking_organization = (Long) attributes.get(
+                "banking_organization");
+
+        if (banking_organization != null) {
+            setBanking_organization(banking_organization);
+        }
+
+        Boolean archival_status = (Boolean) attributes.get("archival_status");
+
+        if (archival_status != null) {
+            setArchival_status(archival_status);
         }
     }
 
@@ -198,6 +281,118 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     }
 
     @Override
+    public boolean getGender() {
+        return _gender;
+    }
+
+    @Override
+    public boolean isGender() {
+        return _gender;
+    }
+
+    @Override
+    public void setGender(boolean gender) {
+        _gender = gender;
+    }
+
+    @Override
+    public Date getDate_of_birth() {
+        return _date_of_birth;
+    }
+
+    @Override
+    public void setDate_of_birth(Date date_of_birth) {
+        _date_of_birth = date_of_birth;
+    }
+
+    @Override
+    public String getPosition() {
+        if (_position == null) {
+            return StringPool.BLANK;
+        } else {
+            return _position;
+        }
+    }
+
+    @Override
+    public void setPosition(String position) {
+        _position = position;
+    }
+
+    @Override
+    public Date getDate_of_employment() {
+        return _date_of_employment;
+    }
+
+    @Override
+    public void setDate_of_employment(Date date_of_employment) {
+        _date_of_employment = date_of_employment;
+    }
+
+    @Override
+    public long getSalary_level() {
+        return _salary_level;
+    }
+
+    @Override
+    public void setSalary_level(long salary_level) {
+        _salary_level = salary_level;
+    }
+
+    @Override
+    public String getWork_number() {
+        if (_work_number == null) {
+            return StringPool.BLANK;
+        } else {
+            return _work_number;
+        }
+    }
+
+    @Override
+    public void setWork_number(String work_number) {
+        _work_number = work_number;
+    }
+
+    @Override
+    public String getTelephone_number() {
+        if (_telephone_number == null) {
+            return StringPool.BLANK;
+        } else {
+            return _telephone_number;
+        }
+    }
+
+    @Override
+    public void setTelephone_number(String telephone_number) {
+        _telephone_number = telephone_number;
+    }
+
+    @Override
+    public long getBanking_organization() {
+        return _banking_organization;
+    }
+
+    @Override
+    public void setBanking_organization(long banking_organization) {
+        _banking_organization = banking_organization;
+    }
+
+    @Override
+    public boolean getArchival_status() {
+        return _archival_status;
+    }
+
+    @Override
+    public boolean isArchival_status() {
+        return _archival_status;
+    }
+
+    @Override
+    public void setArchival_status(boolean archival_status) {
+        _archival_status = archival_status;
+    }
+
+    @Override
     public ExpandoBridge getExpandoBridge() {
         return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
             Worker.class.getName(), getPrimaryKey());
@@ -228,6 +423,15 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         workerImpl.setName(getName());
         workerImpl.setLastname(getLastname());
         workerImpl.setPatronymic(getPatronymic());
+        workerImpl.setGender(getGender());
+        workerImpl.setDate_of_birth(getDate_of_birth());
+        workerImpl.setPosition(getPosition());
+        workerImpl.setDate_of_employment(getDate_of_employment());
+        workerImpl.setSalary_level(getSalary_level());
+        workerImpl.setWork_number(getWork_number());
+        workerImpl.setTelephone_number(getTelephone_number());
+        workerImpl.setBanking_organization(getBanking_organization());
+        workerImpl.setArchival_status(getArchival_status());
 
         workerImpl.resetOriginalValues();
 
@@ -307,12 +511,60 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
             workerCacheModel.patronymic = null;
         }
 
+        workerCacheModel.gender = getGender();
+
+        Date date_of_birth = getDate_of_birth();
+
+        if (date_of_birth != null) {
+            workerCacheModel.date_of_birth = date_of_birth.getTime();
+        } else {
+            workerCacheModel.date_of_birth = Long.MIN_VALUE;
+        }
+
+        workerCacheModel.position = getPosition();
+
+        String position = workerCacheModel.position;
+
+        if ((position != null) && (position.length() == 0)) {
+            workerCacheModel.position = null;
+        }
+
+        Date date_of_employment = getDate_of_employment();
+
+        if (date_of_employment != null) {
+            workerCacheModel.date_of_employment = date_of_employment.getTime();
+        } else {
+            workerCacheModel.date_of_employment = Long.MIN_VALUE;
+        }
+
+        workerCacheModel.salary_level = getSalary_level();
+
+        workerCacheModel.work_number = getWork_number();
+
+        String work_number = workerCacheModel.work_number;
+
+        if ((work_number != null) && (work_number.length() == 0)) {
+            workerCacheModel.work_number = null;
+        }
+
+        workerCacheModel.telephone_number = getTelephone_number();
+
+        String telephone_number = workerCacheModel.telephone_number;
+
+        if ((telephone_number != null) && (telephone_number.length() == 0)) {
+            workerCacheModel.telephone_number = null;
+        }
+
+        workerCacheModel.banking_organization = getBanking_organization();
+
+        workerCacheModel.archival_status = getArchival_status();
+
         return workerCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(9);
+        StringBundler sb = new StringBundler(27);
 
         sb.append("{workerId=");
         sb.append(getWorkerId());
@@ -322,6 +574,24 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         sb.append(getLastname());
         sb.append(", patronymic=");
         sb.append(getPatronymic());
+        sb.append(", gender=");
+        sb.append(getGender());
+        sb.append(", date_of_birth=");
+        sb.append(getDate_of_birth());
+        sb.append(", position=");
+        sb.append(getPosition());
+        sb.append(", date_of_employment=");
+        sb.append(getDate_of_employment());
+        sb.append(", salary_level=");
+        sb.append(getSalary_level());
+        sb.append(", work_number=");
+        sb.append(getWork_number());
+        sb.append(", telephone_number=");
+        sb.append(getTelephone_number());
+        sb.append(", banking_organization=");
+        sb.append(getBanking_organization());
+        sb.append(", archival_status=");
+        sb.append(getArchival_status());
         sb.append("}");
 
         return sb.toString();
@@ -329,7 +599,7 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(16);
+        StringBundler sb = new StringBundler(43);
 
         sb.append("<model><model-name>");
         sb.append("com.liferay.docs.eventlisting.model.Worker");
@@ -350,6 +620,42 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         sb.append(
             "<column><column-name>patronymic</column-name><column-value><![CDATA[");
         sb.append(getPatronymic());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>gender</column-name><column-value><![CDATA[");
+        sb.append(getGender());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>date_of_birth</column-name><column-value><![CDATA[");
+        sb.append(getDate_of_birth());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>position</column-name><column-value><![CDATA[");
+        sb.append(getPosition());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>date_of_employment</column-name><column-value><![CDATA[");
+        sb.append(getDate_of_employment());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>salary_level</column-name><column-value><![CDATA[");
+        sb.append(getSalary_level());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>work_number</column-name><column-value><![CDATA[");
+        sb.append(getWork_number());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>telephone_number</column-name><column-value><![CDATA[");
+        sb.append(getTelephone_number());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>banking_organization</column-name><column-value><![CDATA[");
+        sb.append(getBanking_organization());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>archival_status</column-name><column-value><![CDATA[");
+        sb.append(getArchival_status());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

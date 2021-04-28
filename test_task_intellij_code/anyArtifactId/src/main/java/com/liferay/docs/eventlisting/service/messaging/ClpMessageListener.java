@@ -1,6 +1,8 @@
 package com.liferay.docs.eventlisting.service.messaging;
 
+import com.liferay.docs.eventlisting.service.BankLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.ClpSerializer;
+import com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -19,6 +21,10 @@ public class ClpMessageListener extends BaseMessageListener {
 
         if (command.equals("undeploy") &&
                 servletContextName.equals(getServletContextName())) {
+            BankLocalServiceUtil.clearService();
+
+            OfficialPositionLocalServiceUtil.clearService();
+
             WorkerLocalServiceUtil.clearService();
         }
     }

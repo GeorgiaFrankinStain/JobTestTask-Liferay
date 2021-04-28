@@ -2,6 +2,8 @@ package com.liferay.docs.eventlisting.service.base;
 
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.WorkerLocalService;
+import com.liferay.docs.eventlisting.service.persistence.BankPersistence;
+import com.liferay.docs.eventlisting.service.persistence.OfficialPositionPersistence;
 import com.liferay.docs.eventlisting.service.persistence.WorkerPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -41,6 +43,14 @@ import javax.sql.DataSource;
  */
 public abstract class WorkerLocalServiceBaseImpl extends BaseLocalServiceImpl
     implements WorkerLocalService, IdentifiableBean {
+    @BeanReference(type = com.liferay.docs.eventlisting.service.BankLocalService.class)
+    protected com.liferay.docs.eventlisting.service.BankLocalService bankLocalService;
+    @BeanReference(type = BankPersistence.class)
+    protected BankPersistence bankPersistence;
+    @BeanReference(type = com.liferay.docs.eventlisting.service.OfficialPositionLocalService.class)
+    protected com.liferay.docs.eventlisting.service.OfficialPositionLocalService officialPositionLocalService;
+    @BeanReference(type = OfficialPositionPersistence.class)
+    protected OfficialPositionPersistence officialPositionPersistence;
     @BeanReference(type = com.liferay.docs.eventlisting.service.WorkerLocalService.class)
     protected com.liferay.docs.eventlisting.service.WorkerLocalService workerLocalService;
     @BeanReference(type = WorkerPersistence.class)
@@ -275,6 +285,81 @@ public abstract class WorkerLocalServiceBaseImpl extends BaseLocalServiceImpl
     @Override
     public Worker updateWorker(Worker worker) throws SystemException {
         return workerPersistence.update(worker);
+    }
+
+    /**
+     * Returns the bank local service.
+     *
+     * @return the bank local service
+     */
+    public com.liferay.docs.eventlisting.service.BankLocalService getBankLocalService() {
+        return bankLocalService;
+    }
+
+    /**
+     * Sets the bank local service.
+     *
+     * @param bankLocalService the bank local service
+     */
+    public void setBankLocalService(
+        com.liferay.docs.eventlisting.service.BankLocalService bankLocalService) {
+        this.bankLocalService = bankLocalService;
+    }
+
+    /**
+     * Returns the bank persistence.
+     *
+     * @return the bank persistence
+     */
+    public BankPersistence getBankPersistence() {
+        return bankPersistence;
+    }
+
+    /**
+     * Sets the bank persistence.
+     *
+     * @param bankPersistence the bank persistence
+     */
+    public void setBankPersistence(BankPersistence bankPersistence) {
+        this.bankPersistence = bankPersistence;
+    }
+
+    /**
+     * Returns the official position local service.
+     *
+     * @return the official position local service
+     */
+    public com.liferay.docs.eventlisting.service.OfficialPositionLocalService getOfficialPositionLocalService() {
+        return officialPositionLocalService;
+    }
+
+    /**
+     * Sets the official position local service.
+     *
+     * @param officialPositionLocalService the official position local service
+     */
+    public void setOfficialPositionLocalService(
+        com.liferay.docs.eventlisting.service.OfficialPositionLocalService officialPositionLocalService) {
+        this.officialPositionLocalService = officialPositionLocalService;
+    }
+
+    /**
+     * Returns the official position persistence.
+     *
+     * @return the official position persistence
+     */
+    public OfficialPositionPersistence getOfficialPositionPersistence() {
+        return officialPositionPersistence;
+    }
+
+    /**
+     * Sets the official position persistence.
+     *
+     * @param officialPositionPersistence the official position persistence
+     */
+    public void setOfficialPositionPersistence(
+        OfficialPositionPersistence officialPositionPersistence) {
+        this.officialPositionPersistence = officialPositionPersistence;
     }
 
     /**

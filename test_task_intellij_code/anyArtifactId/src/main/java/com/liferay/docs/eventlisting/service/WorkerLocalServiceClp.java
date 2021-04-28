@@ -48,6 +48,8 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
     private String[] _methodParameterTypes19;
     private String _methodName20;
     private String[] _methodParameterTypes20;
+    private String _methodName21;
+    private String[] _methodParameterTypes21;
 
     public WorkerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -151,6 +153,10 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
         _methodName20 = "findAll";
 
         _methodParameterTypes20 = new String[] {  };
+
+        _methodName21 = "findById";
+
+        _methodParameterTypes21 = new String[] { "long" };
     }
 
     @Override
@@ -724,5 +730,36 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
         }
 
         return (java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.docs.eventlisting.model.Worker findById(long workerId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName21,
+                    _methodParameterTypes21, new Object[] { workerId });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.docs.eventlisting.NoSuchWorkerException) {
+                throw (com.liferay.docs.eventlisting.NoSuchWorkerException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.docs.eventlisting.model.Worker) ClpSerializer.translateOutput(returnObj);
     }
 }

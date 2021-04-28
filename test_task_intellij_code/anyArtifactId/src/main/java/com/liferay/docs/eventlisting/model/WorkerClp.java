@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 import java.lang.reflect.Method;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,15 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
     private String _name;
     private String _lastname;
     private String _patronymic;
+    private boolean _gender;
+    private Date _date_of_birth;
+    private String _position;
+    private Date _date_of_employment;
+    private long _salary_level;
+    private String _work_number;
+    private String _telephone_number;
+    private long _banking_organization;
+    private boolean _archival_status;
     private BaseModel<?> _workerRemoteModel;
     private Class<?> _clpSerializerClass = com.liferay.docs.eventlisting.service.ClpSerializer.class;
 
@@ -67,6 +77,15 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         attributes.put("name", getName());
         attributes.put("lastname", getLastname());
         attributes.put("patronymic", getPatronymic());
+        attributes.put("gender", getGender());
+        attributes.put("date_of_birth", getDate_of_birth());
+        attributes.put("position", getPosition());
+        attributes.put("date_of_employment", getDate_of_employment());
+        attributes.put("salary_level", getSalary_level());
+        attributes.put("work_number", getWork_number());
+        attributes.put("telephone_number", getTelephone_number());
+        attributes.put("banking_organization", getBanking_organization());
+        attributes.put("archival_status", getArchival_status());
 
         return attributes;
     }
@@ -95,6 +114,61 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
 
         if (patronymic != null) {
             setPatronymic(patronymic);
+        }
+
+        Boolean gender = (Boolean) attributes.get("gender");
+
+        if (gender != null) {
+            setGender(gender);
+        }
+
+        Date date_of_birth = (Date) attributes.get("date_of_birth");
+
+        if (date_of_birth != null) {
+            setDate_of_birth(date_of_birth);
+        }
+
+        String position = (String) attributes.get("position");
+
+        if (position != null) {
+            setPosition(position);
+        }
+
+        Date date_of_employment = (Date) attributes.get("date_of_employment");
+
+        if (date_of_employment != null) {
+            setDate_of_employment(date_of_employment);
+        }
+
+        Long salary_level = (Long) attributes.get("salary_level");
+
+        if (salary_level != null) {
+            setSalary_level(salary_level);
+        }
+
+        String work_number = (String) attributes.get("work_number");
+
+        if (work_number != null) {
+            setWork_number(work_number);
+        }
+
+        String telephone_number = (String) attributes.get("telephone_number");
+
+        if (telephone_number != null) {
+            setTelephone_number(telephone_number);
+        }
+
+        Long banking_organization = (Long) attributes.get(
+                "banking_organization");
+
+        if (banking_organization != null) {
+            setBanking_organization(banking_organization);
+        }
+
+        Boolean archival_status = (Boolean) attributes.get("archival_status");
+
+        if (archival_status != null) {
+            setArchival_status(archival_status);
         }
     }
 
@@ -186,6 +260,218 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         }
     }
 
+    @Override
+    public boolean getGender() {
+        return _gender;
+    }
+
+    @Override
+    public boolean isGender() {
+        return _gender;
+    }
+
+    @Override
+    public void setGender(boolean gender) {
+        _gender = gender;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setGender", boolean.class);
+
+                method.invoke(_workerRemoteModel, gender);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public Date getDate_of_birth() {
+        return _date_of_birth;
+    }
+
+    @Override
+    public void setDate_of_birth(Date date_of_birth) {
+        _date_of_birth = date_of_birth;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setDate_of_birth", Date.class);
+
+                method.invoke(_workerRemoteModel, date_of_birth);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public String getPosition() {
+        return _position;
+    }
+
+    @Override
+    public void setPosition(String position) {
+        _position = position;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setPosition", String.class);
+
+                method.invoke(_workerRemoteModel, position);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public Date getDate_of_employment() {
+        return _date_of_employment;
+    }
+
+    @Override
+    public void setDate_of_employment(Date date_of_employment) {
+        _date_of_employment = date_of_employment;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setDate_of_employment",
+                        Date.class);
+
+                method.invoke(_workerRemoteModel, date_of_employment);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getSalary_level() {
+        return _salary_level;
+    }
+
+    @Override
+    public void setSalary_level(long salary_level) {
+        _salary_level = salary_level;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setSalary_level", long.class);
+
+                method.invoke(_workerRemoteModel, salary_level);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public String getWork_number() {
+        return _work_number;
+    }
+
+    @Override
+    public void setWork_number(String work_number) {
+        _work_number = work_number;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setWork_number", String.class);
+
+                method.invoke(_workerRemoteModel, work_number);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public String getTelephone_number() {
+        return _telephone_number;
+    }
+
+    @Override
+    public void setTelephone_number(String telephone_number) {
+        _telephone_number = telephone_number;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setTelephone_number",
+                        String.class);
+
+                method.invoke(_workerRemoteModel, telephone_number);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getBanking_organization() {
+        return _banking_organization;
+    }
+
+    @Override
+    public void setBanking_organization(long banking_organization) {
+        _banking_organization = banking_organization;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setBanking_organization",
+                        long.class);
+
+                method.invoke(_workerRemoteModel, banking_organization);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public boolean getArchival_status() {
+        return _archival_status;
+    }
+
+    @Override
+    public boolean isArchival_status() {
+        return _archival_status;
+    }
+
+    @Override
+    public void setArchival_status(boolean archival_status) {
+        _archival_status = archival_status;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setArchival_status",
+                        boolean.class);
+
+                method.invoke(_workerRemoteModel, archival_status);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
     public BaseModel<?> getWorkerRemoteModel() {
         return _workerRemoteModel;
     }
@@ -257,6 +543,15 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         clone.setName(getName());
         clone.setLastname(getLastname());
         clone.setPatronymic(getPatronymic());
+        clone.setGender(getGender());
+        clone.setDate_of_birth(getDate_of_birth());
+        clone.setPosition(getPosition());
+        clone.setDate_of_employment(getDate_of_employment());
+        clone.setSalary_level(getSalary_level());
+        clone.setWork_number(getWork_number());
+        clone.setTelephone_number(getTelephone_number());
+        clone.setBanking_organization(getBanking_organization());
+        clone.setArchival_status(getArchival_status());
 
         return clone;
     }
@@ -306,7 +601,7 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(9);
+        StringBundler sb = new StringBundler(27);
 
         sb.append("{workerId=");
         sb.append(getWorkerId());
@@ -316,6 +611,24 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         sb.append(getLastname());
         sb.append(", patronymic=");
         sb.append(getPatronymic());
+        sb.append(", gender=");
+        sb.append(getGender());
+        sb.append(", date_of_birth=");
+        sb.append(getDate_of_birth());
+        sb.append(", position=");
+        sb.append(getPosition());
+        sb.append(", date_of_employment=");
+        sb.append(getDate_of_employment());
+        sb.append(", salary_level=");
+        sb.append(getSalary_level());
+        sb.append(", work_number=");
+        sb.append(getWork_number());
+        sb.append(", telephone_number=");
+        sb.append(getTelephone_number());
+        sb.append(", banking_organization=");
+        sb.append(getBanking_organization());
+        sb.append(", archival_status=");
+        sb.append(getArchival_status());
         sb.append("}");
 
         return sb.toString();
@@ -323,7 +636,7 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(16);
+        StringBundler sb = new StringBundler(43);
 
         sb.append("<model><model-name>");
         sb.append("com.liferay.docs.eventlisting.model.Worker");
@@ -344,6 +657,42 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         sb.append(
             "<column><column-name>patronymic</column-name><column-value><![CDATA[");
         sb.append(getPatronymic());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>gender</column-name><column-value><![CDATA[");
+        sb.append(getGender());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>date_of_birth</column-name><column-value><![CDATA[");
+        sb.append(getDate_of_birth());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>position</column-name><column-value><![CDATA[");
+        sb.append(getPosition());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>date_of_employment</column-name><column-value><![CDATA[");
+        sb.append(getDate_of_employment());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>salary_level</column-name><column-value><![CDATA[");
+        sb.append(getSalary_level());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>work_number</column-name><column-value><![CDATA[");
+        sb.append(getWork_number());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>telephone_number</column-name><column-value><![CDATA[");
+        sb.append(getTelephone_number());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>banking_organization</column-name><column-value><![CDATA[");
+        sb.append(getBanking_organization());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>archival_status</column-name><column-value><![CDATA[");
+        sb.append(getArchival_status());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

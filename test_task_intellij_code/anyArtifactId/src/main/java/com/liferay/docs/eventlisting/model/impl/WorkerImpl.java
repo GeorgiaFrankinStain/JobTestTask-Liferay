@@ -17,4 +17,6 @@ public class WorkerImpl extends WorkerBaseImpl {
      */
     public WorkerImpl() {
     }
+
+
 }

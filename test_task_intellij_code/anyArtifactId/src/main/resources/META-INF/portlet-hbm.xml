@@ -2,7 +2,26 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.docs.eventlisting.model.Bank" />
+	<import class="com.liferay.docs.eventlisting.model.OfficialPosition" />
 	<import class="com.liferay.docs.eventlisting.model.Worker" />
+	<class name="com.liferay.docs.eventlisting.model.impl.BankImpl" table="Event_Bank">
+		<cache usage="read-write" />
+		<id name="bankId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="bic" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.docs.eventlisting.model.impl.OfficialPositionImpl" table="Event_OfficialPosition">
+		<cache usage="read-write" />
+		<id name="officialPositionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="is_archived" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
 	<class name="com.liferay.docs.eventlisting.model.impl.WorkerImpl" table="Event_Worker">
 		<cache usage="read-write" />
 		<id name="workerId" type="long">
@@ -11,5 +30,14 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="lastname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="patronymic" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="gender" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="date_of_birth" type="org.hibernate.type.TimestampType" />
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="date_of_employment" type="org.hibernate.type.TimestampType" />
+		<property name="salary_level" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="work_number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="telephone_number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="banking_organization" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="archival_status" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 </hibernate-mapping>

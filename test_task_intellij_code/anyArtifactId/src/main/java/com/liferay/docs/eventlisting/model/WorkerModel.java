@@ -9,6 +9,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
+import java.util.Date;
+
 /**
  * The base model interface for the Worker service. Represents a row in the &quot;Event_Worker&quot; database table, with each column mapped to a property of this class.
  *
@@ -101,6 +103,149 @@ public interface WorkerModel extends BaseModel<Worker> {
      * @param patronymic the patronymic of this worker
      */
     public void setPatronymic(String patronymic);
+
+    /**
+     * Returns the gender of this worker.
+     *
+     * @return the gender of this worker
+     */
+    public boolean getGender();
+
+    /**
+     * Returns <code>true</code> if this worker is gender.
+     *
+     * @return <code>true</code> if this worker is gender; <code>false</code> otherwise
+     */
+    public boolean isGender();
+
+    /**
+     * Sets whether this worker is gender.
+     *
+     * @param gender the gender of this worker
+     */
+    public void setGender(boolean gender);
+
+    /**
+     * Returns the date_of_birth of this worker.
+     *
+     * @return the date_of_birth of this worker
+     */
+    public Date getDate_of_birth();
+
+    /**
+     * Sets the date_of_birth of this worker.
+     *
+     * @param date_of_birth the date_of_birth of this worker
+     */
+    public void setDate_of_birth(Date date_of_birth);
+
+    /**
+     * Returns the position of this worker.
+     *
+     * @return the position of this worker
+     */
+    @AutoEscape
+    public String getPosition();
+
+    /**
+     * Sets the position of this worker.
+     *
+     * @param position the position of this worker
+     */
+    public void setPosition(String position);
+
+    /**
+     * Returns the date_of_employment of this worker.
+     *
+     * @return the date_of_employment of this worker
+     */
+    public Date getDate_of_employment();
+
+    /**
+     * Sets the date_of_employment of this worker.
+     *
+     * @param date_of_employment the date_of_employment of this worker
+     */
+    public void setDate_of_employment(Date date_of_employment);
+
+    /**
+     * Returns the salary_level of this worker.
+     *
+     * @return the salary_level of this worker
+     */
+    public long getSalary_level();
+
+    /**
+     * Sets the salary_level of this worker.
+     *
+     * @param salary_level the salary_level of this worker
+     */
+    public void setSalary_level(long salary_level);
+
+    /**
+     * Returns the work_number of this worker.
+     *
+     * @return the work_number of this worker
+     */
+    @AutoEscape
+    public String getWork_number();
+
+    /**
+     * Sets the work_number of this worker.
+     *
+     * @param work_number the work_number of this worker
+     */
+    public void setWork_number(String work_number);
+
+    /**
+     * Returns the telephone_number of this worker.
+     *
+     * @return the telephone_number of this worker
+     */
+    @AutoEscape
+    public String getTelephone_number();
+
+    /**
+     * Sets the telephone_number of this worker.
+     *
+     * @param telephone_number the telephone_number of this worker
+     */
+    public void setTelephone_number(String telephone_number);
+
+    /**
+     * Returns the banking_organization of this worker.
+     *
+     * @return the banking_organization of this worker
+     */
+    public long getBanking_organization();
+
+    /**
+     * Sets the banking_organization of this worker.
+     *
+     * @param banking_organization the banking_organization of this worker
+     */
+    public void setBanking_organization(long banking_organization);
+
+    /**
+     * Returns the archival_status of this worker.
+     *
+     * @return the archival_status of this worker
+     */
+    public boolean getArchival_status();
+
+    /**
+     * Returns <code>true</code> if this worker is archival_status.
+     *
+     * @return <code>true</code> if this worker is archival_status; <code>false</code> otherwise
+     */
+    public boolean isArchival_status();
+
+    /**
+     * Sets whether this worker is archival_status.
+     *
+     * @param archival_status the archival_status of this worker
+     */
+    public void setArchival_status(boolean archival_status);
 
     @Override
     public boolean isNew();

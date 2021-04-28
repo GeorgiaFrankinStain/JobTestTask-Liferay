@@ -284,6 +284,13 @@ public class WorkerLocalServiceWrapper implements WorkerLocalService,
         return _workerLocalService.findAll();
     }
 
+    @Override
+    public com.liferay.docs.eventlisting.model.Worker findById(long workerId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _workerLocalService.findById(workerId);
+    }
+
     /**
      * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
      */

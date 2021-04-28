@@ -1,5 +1,7 @@
 package com.liferay.docs.eventlisting.service;
 
+import com.liferay.docs.eventlisting.model.BankClp;
+import com.liferay.docs.eventlisting.model.OfficialPositionClp;
 import com.liferay.docs.eventlisting.model.WorkerClp;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -88,6 +90,14 @@ public class ClpSerializer {
 
         String oldModelClassName = oldModelClass.getName();
 
+        if (oldModelClassName.equals(BankClp.class.getName())) {
+            return translateInputBank(oldModel);
+        }
+
+        if (oldModelClassName.equals(OfficialPositionClp.class.getName())) {
+            return translateInputOfficialPosition(oldModel);
+        }
+
         if (oldModelClassName.equals(WorkerClp.class.getName())) {
             return translateInputWorker(oldModel);
         }
@@ -105,6 +115,26 @@ public class ClpSerializer {
         }
 
         return newList;
+    }
+
+    public static Object translateInputBank(BaseModel<?> oldModel) {
+        BankClp oldClpModel = (BankClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getBankRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
+    }
+
+    public static Object translateInputOfficialPosition(BaseModel<?> oldModel) {
+        OfficialPositionClp oldClpModel = (OfficialPositionClp) oldModel;
+
+        BaseModel<?> newModel = oldClpModel.getOfficialPositionRemoteModel();
+
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+        return newModel;
     }
 
     public static Object translateInputWorker(BaseModel<?> oldModel) {
@@ -131,6 +161,76 @@ public class ClpSerializer {
         Class<?> oldModelClass = oldModel.getClass();
 
         String oldModelClassName = oldModelClass.getName();
+
+        if (oldModelClassName.equals(
+                    "com.liferay.docs.eventlisting.model.impl.BankImpl")) {
+            return translateOutputBank(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
+
+        if (oldModelClassName.equals(
+                    "com.liferay.docs.eventlisting.model.impl.OfficialPositionImpl")) {
+            return translateOutputOfficialPosition(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
+
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
+
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
+
+                Class<?> oldModelModelClass = oldModel.getModelClass();
+
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
+
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
+
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
 
         if (oldModelClassName.equals(
                     "com.liferay.docs.eventlisting.model.impl.WorkerImpl")) {
@@ -244,11 +344,41 @@ public class ClpSerializer {
         }
 
         if (className.equals(
+                    "com.liferay.docs.eventlisting.NoSuchBankException")) {
+            return new com.liferay.docs.eventlisting.NoSuchBankException();
+        }
+
+        if (className.equals(
+                    "com.liferay.docs.eventlisting.NoSuchOfficialPositionException")) {
+            return new com.liferay.docs.eventlisting.NoSuchOfficialPositionException();
+        }
+
+        if (className.equals(
                     "com.liferay.docs.eventlisting.NoSuchWorkerException")) {
             return new com.liferay.docs.eventlisting.NoSuchWorkerException();
         }
 
         return throwable;
+    }
+
+    public static Object translateOutputBank(BaseModel<?> oldModel) {
+        BankClp newModel = new BankClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setBankRemoteModel(oldModel);
+
+        return newModel;
+    }
+
+    public static Object translateOutputOfficialPosition(BaseModel<?> oldModel) {
+        OfficialPositionClp newModel = new OfficialPositionClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setOfficialPositionRemoteModel(oldModel);
+
+        return newModel;
     }
 
     public static Object translateOutputWorker(BaseModel<?> oldModel) {

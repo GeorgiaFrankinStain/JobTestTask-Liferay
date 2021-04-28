@@ -7,17 +7,59 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.docs.eventlisting.model.impl.BankModelImpl">
+		<attributes>
+			<id name="bankId" />
+			<basic name="name" />
+			<basic name="bic" />
+			<basic name="address" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.docs.eventlisting.model.impl.OfficialPositionModelImpl">
+		<attributes>
+			<id name="officialPositionId" />
+			<basic name="name" />
+			<basic name="is_archived" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.docs.eventlisting.model.impl.WorkerModelImpl">
 		<attributes>
 			<id name="workerId" />
 			<basic name="name" />
 			<basic name="lastname" />
 			<basic name="patronymic" />
+			<basic name="gender" />
+			<basic name="date_of_birth">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="position" />
+			<basic name="date_of_employment">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="salary_level" />
+			<basic name="work_number" />
+			<basic name="telephone_number" />
+			<basic name="banking_organization" />
+			<basic name="archival_status" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="com.liferay.docs.eventlisting.model.impl.BankImpl" name="Bank">
+		<table name="Event_Bank" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.docs.eventlisting.model.impl.OfficialPositionImpl" name="OfficialPosition">
+		<table name="Event_OfficialPosition" />
+		<attributes />
+	</entity>
 	<entity class="com.liferay.docs.eventlisting.model.impl.WorkerImpl" name="Worker">
 		<table name="Event_Worker" />
 		<attributes />

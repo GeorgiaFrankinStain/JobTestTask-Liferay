@@ -18,47 +18,27 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <portlet:defineObjects />
 <jsp:useBean id="entries" class="java.util.ArrayList" scope="request"/>
 
-<liferay-ui:search-container>
-    <liferay-ui:search-container-results
-            results="<%= entries %>"
-    />
-
-    <liferay-ui:search-container-row
-            className="com.liferay.docs.eventlisting.model.Worker"
-            modelVar="entry"
-    >
-
-        <liferay-ui:search-container-column-text property="name" />
-        <liferay-ui:search-container-column-text property="lastname" />
-        <liferay-ui:search-container-column-text property="patronymic" />
-        <liferay-ui:search-container-column-text>
-            <portlet:renderURL var="viewEditPage"></portlet:renderURL>
-            <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>
-            <liferay-ui:icon-menu>
-                <liferay-ui:icon iconCssClass="icon-edit" message="Change" url='<%=viewEditPage%>'/>
-                <liferay-ui:icon iconCssClass="icon-trash" message="Delete" url="<%=deleteEntryURL%>"/>
-            </liferay-ui:icon-menu>
-        </liferay-ui:search-container-column-text>
-    </liferay-ui:search-container-row>
-
-    <liferay-ui:search-iterator />
-</liferay-ui:search-container>
-
-
-
 
 <aui:button-row cssClass="guestbook-buttons">
 
-    <portlet:renderURL var="addEntryURL">
-        <portlet:param name="jspPage" value="/views/edit_entry.jsp"></portlet:param>
+    <portlet:renderURL var="listOfficialPositions">
+        <portlet:param name="jspPage" value="/views/list_official_position.jsp"></portlet:param>
     </portlet:renderURL>
+    <aui:button onClick="<%= listOfficialPositions.toString() %>" value="List official positions"></aui:button>
 
-    <aui:button onClick="<%= addEntryURL.toString() %>" value="Add Entry"></aui:button>
+    <portlet:renderURL var="listBanks">
+        <portlet:param name="jspPage" value="/views/list_bank.jsp"></portlet:param>
+    </portlet:renderURL>
+    <aui:button onClick="<%= listBanks.toString() %>" value="List banks"></aui:button>
+
+    <portlet:renderURL var="listEmployees">
+        <portlet:param name="jspPage" value="/views/list_employees.jsp"></portlet:param>
+    </portlet:renderURL>
+    <aui:button onClick="<%= listEmployees.toString() %>" value="List employees"></aui:button>
 
 </aui:button-row>
 

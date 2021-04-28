@@ -41,14 +41,16 @@ public class WorkerLocalServiceClpInvoker {
     private String[] _methodParameterTypes14;
     private String _methodName15;
     private String[] _methodParameterTypes15;
-    private String _methodName32;
-    private String[] _methodParameterTypes32;
-    private String _methodName33;
-    private String[] _methodParameterTypes33;
-    private String _methodName38;
-    private String[] _methodParameterTypes38;
-    private String _methodName39;
-    private String[] _methodParameterTypes39;
+    private String _methodName40;
+    private String[] _methodParameterTypes40;
+    private String _methodName41;
+    private String[] _methodParameterTypes41;
+    private String _methodName46;
+    private String[] _methodParameterTypes46;
+    private String _methodName47;
+    private String[] _methodParameterTypes47;
+    private String _methodName48;
+    private String[] _methodParameterTypes48;
 
     public WorkerLocalServiceClpInvoker() {
         _methodName0 = "addWorker";
@@ -133,23 +135,27 @@ public class WorkerLocalServiceClpInvoker {
                 "com.liferay.docs.eventlisting.model.Worker"
             };
 
-        _methodName32 = "getBeanIdentifier";
+        _methodName40 = "getBeanIdentifier";
 
-        _methodParameterTypes32 = new String[] {  };
+        _methodParameterTypes40 = new String[] {  };
 
-        _methodName33 = "setBeanIdentifier";
+        _methodName41 = "setBeanIdentifier";
 
-        _methodParameterTypes33 = new String[] { "java.lang.String" };
+        _methodParameterTypes41 = new String[] { "java.lang.String" };
 
-        _methodName38 = "addWorker";
+        _methodName46 = "addWorker";
 
-        _methodParameterTypes38 = new String[] {
+        _methodParameterTypes46 = new String[] {
                 "java.lang.String", "java.lang.String", "java.lang.String"
             };
 
-        _methodName39 = "findAll";
+        _methodName47 = "findAll";
 
-        _methodParameterTypes39 = new String[] {  };
+        _methodParameterTypes47 = new String[] {  };
+
+        _methodName48 = "findById";
+
+        _methodParameterTypes48 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -241,27 +247,32 @@ public class WorkerLocalServiceClpInvoker {
             return WorkerLocalServiceUtil.updateWorker((com.liferay.docs.eventlisting.model.Worker) arguments[0]);
         }
 
-        if (_methodName32.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+        if (_methodName40.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
             return WorkerLocalServiceUtil.getBeanIdentifier();
         }
 
-        if (_methodName33.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+        if (_methodName41.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
             WorkerLocalServiceUtil.setBeanIdentifier((java.lang.String) arguments[0]);
 
             return null;
         }
 
-        if (_methodName38.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+        if (_methodName46.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
             return WorkerLocalServiceUtil.addWorker((java.lang.String) arguments[0],
                 (java.lang.String) arguments[1], (java.lang.String) arguments[2]);
         }
 
-        if (_methodName39.equals(name) &&
-                Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+        if (_methodName47.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
             return WorkerLocalServiceUtil.findAll();
+        }
+
+        if (_methodName48.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+            return WorkerLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 
         throw new UnsupportedOperationException();

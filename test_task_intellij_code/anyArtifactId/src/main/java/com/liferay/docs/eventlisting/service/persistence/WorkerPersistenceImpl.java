@@ -323,6 +323,15 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
         workerImpl.setName(worker.getName());
         workerImpl.setLastname(worker.getLastname());
         workerImpl.setPatronymic(worker.getPatronymic());
+        workerImpl.setGender(worker.isGender());
+        workerImpl.setDate_of_birth(worker.getDate_of_birth());
+        workerImpl.setPosition(worker.getPosition());
+        workerImpl.setDate_of_employment(worker.getDate_of_employment());
+        workerImpl.setSalary_level(worker.getSalary_level());
+        workerImpl.setWork_number(worker.getWork_number());
+        workerImpl.setTelephone_number(worker.getTelephone_number());
+        workerImpl.setBanking_organization(worker.getBanking_organization());
+        workerImpl.setArchival_status(worker.isArchival_status());
 
         return workerImpl;
     }

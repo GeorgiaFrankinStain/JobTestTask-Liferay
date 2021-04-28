@@ -246,4 +246,8 @@ public interface WorkerLocalService extends BaseLocalService,
 
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.docs.eventlisting.model.Worker findById(long workerId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException;
 }

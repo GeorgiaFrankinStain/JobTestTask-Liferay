@@ -1,10 +1,17 @@
 package com.liferay.docs.eventlisting.service.impl;
 
+import com.liferay.docs.eventlisting.NoSuchWorkerException;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.base.WorkerLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.expando.model.ExpandoBridge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * The implementation of the worker local service.
@@ -46,4 +53,9 @@ public class WorkerLocalServiceImpl extends WorkerLocalServiceBaseImpl {
         result.addAll(workerPersistence.findAll());
         return result;
     }
+
+    public Worker findById(long workerId) throws NoSuchWorkerException, SystemException {
+        return workerPersistence.findByPrimaryKey(workerId);
+    }
+
 }

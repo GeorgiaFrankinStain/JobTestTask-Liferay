@@ -3,6 +3,7 @@ package com.liferay.docs.eventlisting.model;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +41,15 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
         attributes.put("name", getName());
         attributes.put("lastname", getLastname());
         attributes.put("patronymic", getPatronymic());
+        attributes.put("gender", getGender());
+        attributes.put("date_of_birth", getDate_of_birth());
+        attributes.put("position", getPosition());
+        attributes.put("date_of_employment", getDate_of_employment());
+        attributes.put("salary_level", getSalary_level());
+        attributes.put("work_number", getWork_number());
+        attributes.put("telephone_number", getTelephone_number());
+        attributes.put("banking_organization", getBanking_organization());
+        attributes.put("archival_status", getArchival_status());
 
         return attributes;
     }
@@ -68,6 +78,61 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
 
         if (patronymic != null) {
             setPatronymic(patronymic);
+        }
+
+        Boolean gender = (Boolean) attributes.get("gender");
+
+        if (gender != null) {
+            setGender(gender);
+        }
+
+        Date date_of_birth = (Date) attributes.get("date_of_birth");
+
+        if (date_of_birth != null) {
+            setDate_of_birth(date_of_birth);
+        }
+
+        String position = (String) attributes.get("position");
+
+        if (position != null) {
+            setPosition(position);
+        }
+
+        Date date_of_employment = (Date) attributes.get("date_of_employment");
+
+        if (date_of_employment != null) {
+            setDate_of_employment(date_of_employment);
+        }
+
+        Long salary_level = (Long) attributes.get("salary_level");
+
+        if (salary_level != null) {
+            setSalary_level(salary_level);
+        }
+
+        String work_number = (String) attributes.get("work_number");
+
+        if (work_number != null) {
+            setWork_number(work_number);
+        }
+
+        String telephone_number = (String) attributes.get("telephone_number");
+
+        if (telephone_number != null) {
+            setTelephone_number(telephone_number);
+        }
+
+        Long banking_organization = (Long) attributes.get(
+                "banking_organization");
+
+        if (banking_organization != null) {
+            setBanking_organization(banking_organization);
+        }
+
+        Boolean archival_status = (Boolean) attributes.get("archival_status");
+
+        if (archival_status != null) {
+            setArchival_status(archival_status);
         }
     }
 
@@ -169,6 +234,206 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
     @Override
     public void setPatronymic(java.lang.String patronymic) {
         _worker.setPatronymic(patronymic);
+    }
+
+    /**
+    * Returns the gender of this worker.
+    *
+    * @return the gender of this worker
+    */
+    @Override
+    public boolean getGender() {
+        return _worker.getGender();
+    }
+
+    /**
+    * Returns <code>true</code> if this worker is gender.
+    *
+    * @return <code>true</code> if this worker is gender; <code>false</code> otherwise
+    */
+    @Override
+    public boolean isGender() {
+        return _worker.isGender();
+    }
+
+    /**
+    * Sets whether this worker is gender.
+    *
+    * @param gender the gender of this worker
+    */
+    @Override
+    public void setGender(boolean gender) {
+        _worker.setGender(gender);
+    }
+
+    /**
+    * Returns the date_of_birth of this worker.
+    *
+    * @return the date_of_birth of this worker
+    */
+    @Override
+    public java.util.Date getDate_of_birth() {
+        return _worker.getDate_of_birth();
+    }
+
+    /**
+    * Sets the date_of_birth of this worker.
+    *
+    * @param date_of_birth the date_of_birth of this worker
+    */
+    @Override
+    public void setDate_of_birth(java.util.Date date_of_birth) {
+        _worker.setDate_of_birth(date_of_birth);
+    }
+
+    /**
+    * Returns the position of this worker.
+    *
+    * @return the position of this worker
+    */
+    @Override
+    public java.lang.String getPosition() {
+        return _worker.getPosition();
+    }
+
+    /**
+    * Sets the position of this worker.
+    *
+    * @param position the position of this worker
+    */
+    @Override
+    public void setPosition(java.lang.String position) {
+        _worker.setPosition(position);
+    }
+
+    /**
+    * Returns the date_of_employment of this worker.
+    *
+    * @return the date_of_employment of this worker
+    */
+    @Override
+    public java.util.Date getDate_of_employment() {
+        return _worker.getDate_of_employment();
+    }
+
+    /**
+    * Sets the date_of_employment of this worker.
+    *
+    * @param date_of_employment the date_of_employment of this worker
+    */
+    @Override
+    public void setDate_of_employment(java.util.Date date_of_employment) {
+        _worker.setDate_of_employment(date_of_employment);
+    }
+
+    /**
+    * Returns the salary_level of this worker.
+    *
+    * @return the salary_level of this worker
+    */
+    @Override
+    public long getSalary_level() {
+        return _worker.getSalary_level();
+    }
+
+    /**
+    * Sets the salary_level of this worker.
+    *
+    * @param salary_level the salary_level of this worker
+    */
+    @Override
+    public void setSalary_level(long salary_level) {
+        _worker.setSalary_level(salary_level);
+    }
+
+    /**
+    * Returns the work_number of this worker.
+    *
+    * @return the work_number of this worker
+    */
+    @Override
+    public java.lang.String getWork_number() {
+        return _worker.getWork_number();
+    }
+
+    /**
+    * Sets the work_number of this worker.
+    *
+    * @param work_number the work_number of this worker
+    */
+    @Override
+    public void setWork_number(java.lang.String work_number) {
+        _worker.setWork_number(work_number);
+    }
+
+    /**
+    * Returns the telephone_number of this worker.
+    *
+    * @return the telephone_number of this worker
+    */
+    @Override
+    public java.lang.String getTelephone_number() {
+        return _worker.getTelephone_number();
+    }
+
+    /**
+    * Sets the telephone_number of this worker.
+    *
+    * @param telephone_number the telephone_number of this worker
+    */
+    @Override
+    public void setTelephone_number(java.lang.String telephone_number) {
+        _worker.setTelephone_number(telephone_number);
+    }
+
+    /**
+    * Returns the banking_organization of this worker.
+    *
+    * @return the banking_organization of this worker
+    */
+    @Override
+    public long getBanking_organization() {
+        return _worker.getBanking_organization();
+    }
+
+    /**
+    * Sets the banking_organization of this worker.
+    *
+    * @param banking_organization the banking_organization of this worker
+    */
+    @Override
+    public void setBanking_organization(long banking_organization) {
+        _worker.setBanking_organization(banking_organization);
+    }
+
+    /**
+    * Returns the archival_status of this worker.
+    *
+    * @return the archival_status of this worker
+    */
+    @Override
+    public boolean getArchival_status() {
+        return _worker.getArchival_status();
+    }
+
+    /**
+    * Returns <code>true</code> if this worker is archival_status.
+    *
+    * @return <code>true</code> if this worker is archival_status; <code>false</code> otherwise
+    */
+    @Override
+    public boolean isArchival_status() {
+        return _worker.isArchival_status();
+    }
+
+    /**
+    * Sets whether this worker is archival_status.
+    *
+    * @param archival_status the archival_status of this worker
+    */
+    @Override
+    public void setArchival_status(boolean archival_status) {
+        _worker.setArchival_status(archival_status);
     }
 
     @Override
