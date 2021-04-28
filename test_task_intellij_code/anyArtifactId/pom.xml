@@ -29,6 +29,7 @@
 					<appServerPortalDir>${liferay.app.server.portal.dir}</appServerPortalDir>
 					<liferayVersion>${liferay.version}</liferayVersion>
 					<pluginType>portlet</pluginType>
+					<pluginName>${project.artifactId}-${project.version}</pluginName>
 				</configuration>
 			</plugin>
 			<plugin>
