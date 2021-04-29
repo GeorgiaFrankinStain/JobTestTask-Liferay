@@ -31,8 +31,9 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
     private long _salary_level;
     private String _work_number;
     private String _telephone_number;
-    private long _banking_organization;
     private boolean _archival_status;
+    private long _bankId;
+    private long _officialPositionId;
     private BaseModel<?> _workerRemoteModel;
     private Class<?> _clpSerializerClass = com.liferay.docs.eventlisting.service.ClpSerializer.class;
 
@@ -84,8 +85,9 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         attributes.put("salary_level", getSalary_level());
         attributes.put("work_number", getWork_number());
         attributes.put("telephone_number", getTelephone_number());
-        attributes.put("banking_organization", getBanking_organization());
         attributes.put("archival_status", getArchival_status());
+        attributes.put("bankId", getBankId());
+        attributes.put("officialPositionId", getOfficialPositionId());
 
         return attributes;
     }
@@ -158,17 +160,22 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
             setTelephone_number(telephone_number);
         }
 
-        Long banking_organization = (Long) attributes.get(
-                "banking_organization");
-
-        if (banking_organization != null) {
-            setBanking_organization(banking_organization);
-        }
-
         Boolean archival_status = (Boolean) attributes.get("archival_status");
 
         if (archival_status != null) {
             setArchival_status(archival_status);
+        }
+
+        Long bankId = (Long) attributes.get("bankId");
+
+        if (bankId != null) {
+            setBankId(bankId);
+        }
+
+        Long officialPositionId = (Long) attributes.get("officialPositionId");
+
+        if (officialPositionId != null) {
+            setOfficialPositionId(officialPositionId);
         }
     }
 
@@ -422,29 +429,6 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
     }
 
     @Override
-    public long getBanking_organization() {
-        return _banking_organization;
-    }
-
-    @Override
-    public void setBanking_organization(long banking_organization) {
-        _banking_organization = banking_organization;
-
-        if (_workerRemoteModel != null) {
-            try {
-                Class<?> clazz = _workerRemoteModel.getClass();
-
-                Method method = clazz.getMethod("setBanking_organization",
-                        long.class);
-
-                method.invoke(_workerRemoteModel, banking_organization);
-            } catch (Exception e) {
-                throw new UnsupportedOperationException(e);
-            }
-        }
-    }
-
-    @Override
     public boolean getArchival_status() {
         return _archival_status;
     }
@@ -466,6 +450,51 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
                         boolean.class);
 
                 method.invoke(_workerRemoteModel, archival_status);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getBankId() {
+        return _bankId;
+    }
+
+    @Override
+    public void setBankId(long bankId) {
+        _bankId = bankId;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setBankId", long.class);
+
+                method.invoke(_workerRemoteModel, bankId);
+            } catch (Exception e) {
+                throw new UnsupportedOperationException(e);
+            }
+        }
+    }
+
+    @Override
+    public long getOfficialPositionId() {
+        return _officialPositionId;
+    }
+
+    @Override
+    public void setOfficialPositionId(long officialPositionId) {
+        _officialPositionId = officialPositionId;
+
+        if (_workerRemoteModel != null) {
+            try {
+                Class<?> clazz = _workerRemoteModel.getClass();
+
+                Method method = clazz.getMethod("setOfficialPositionId",
+                        long.class);
+
+                method.invoke(_workerRemoteModel, officialPositionId);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -550,8 +579,9 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         clone.setSalary_level(getSalary_level());
         clone.setWork_number(getWork_number());
         clone.setTelephone_number(getTelephone_number());
-        clone.setBanking_organization(getBanking_organization());
         clone.setArchival_status(getArchival_status());
+        clone.setBankId(getBankId());
+        clone.setOfficialPositionId(getOfficialPositionId());
 
         return clone;
     }
@@ -601,7 +631,7 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(27);
+        StringBundler sb = new StringBundler(29);
 
         sb.append("{workerId=");
         sb.append(getWorkerId());
@@ -625,10 +655,12 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         sb.append(getWork_number());
         sb.append(", telephone_number=");
         sb.append(getTelephone_number());
-        sb.append(", banking_organization=");
-        sb.append(getBanking_organization());
         sb.append(", archival_status=");
         sb.append(getArchival_status());
+        sb.append(", bankId=");
+        sb.append(getBankId());
+        sb.append(", officialPositionId=");
+        sb.append(getOfficialPositionId());
         sb.append("}");
 
         return sb.toString();
@@ -636,7 +668,7 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(43);
+        StringBundler sb = new StringBundler(46);
 
         sb.append("<model><model-name>");
         sb.append("com.liferay.docs.eventlisting.model.Worker");
@@ -687,12 +719,16 @@ public class WorkerClp extends BaseModelImpl<Worker> implements Worker {
         sb.append(getTelephone_number());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>banking_organization</column-name><column-value><![CDATA[");
-        sb.append(getBanking_organization());
-        sb.append("]]></column-value></column>");
-        sb.append(
             "<column><column-name>archival_status</column-name><column-value><![CDATA[");
         sb.append(getArchival_status());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>bankId</column-name><column-value><![CDATA[");
+        sb.append(getBankId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>officialPositionId</column-name><column-value><![CDATA[");
+        sb.append(getOfficialPositionId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

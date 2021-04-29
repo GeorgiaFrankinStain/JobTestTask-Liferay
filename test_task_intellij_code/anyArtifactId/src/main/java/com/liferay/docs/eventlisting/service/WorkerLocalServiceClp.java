@@ -147,7 +147,10 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
         _methodName19 = "addWorker";
 
         _methodParameterTypes19 = new String[] {
-                "java.lang.String", "java.lang.String", "java.lang.String"
+                "java.lang.String", "java.lang.String", "java.lang.String",
+                "boolean", "java.util.Date", "java.lang.String",
+                "java.util.Date", "long", "java.lang.String", "java.lang.String",
+                "long", "long", "boolean"
             };
 
         _methodName20 = "findAll";
@@ -674,7 +677,11 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
     @Override
     public com.liferay.docs.eventlisting.model.Worker addWorker(
         java.lang.String name, java.lang.String lastname,
-        java.lang.String patronymic)
+        java.lang.String patronymic, boolean isMan, java.util.Date birthDate,
+        java.lang.String position, java.util.Date employmentDate,
+        long salaryLevel, java.lang.String workNumber,
+        java.lang.String telephoneNumber, long idBankService,
+        long officialPositionId, boolean isArchived)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
@@ -686,7 +693,27 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
                         
                     ClpSerializer.translateInput(lastname),
                         
-                    ClpSerializer.translateInput(patronymic)
+                    ClpSerializer.translateInput(patronymic),
+                        
+                    isMan,
+                        
+                    ClpSerializer.translateInput(birthDate),
+                        
+                    ClpSerializer.translateInput(position),
+                        
+                    ClpSerializer.translateInput(employmentDate),
+                        
+                    salaryLevel,
+                        
+                    ClpSerializer.translateInput(workNumber),
+                        
+                    ClpSerializer.translateInput(telephoneNumber),
+                        
+                    idBankService,
+                        
+                    officialPositionId,
+                        
+                    isArchived
                     });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);

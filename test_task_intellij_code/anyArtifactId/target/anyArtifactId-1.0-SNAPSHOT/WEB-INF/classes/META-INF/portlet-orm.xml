@@ -45,8 +45,9 @@
 			<basic name="salary_level" />
 			<basic name="work_number" />
 			<basic name="telephone_number" />
-			<basic name="banking_organization" />
 			<basic name="archival_status" />
+			<basic name="bankId" />
+			<basic name="officialPositionId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

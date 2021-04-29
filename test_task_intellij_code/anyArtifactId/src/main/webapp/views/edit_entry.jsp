@@ -1,6 +1,11 @@
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.docs.eventlisting.model.Worker" %>
-<%@ page import="com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil" %><%--
+<%@ page import="com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.liferay.docs.eventlisting.model.Bank" %>
+<%@ page import="com.liferay.docs.eventlisting.service.BankLocalServiceUtil" %>
+<%@ page import="com.liferay.docs.eventlisting.model.OfficialPosition" %>
+<%@ page import="com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 23.04.2021
@@ -45,14 +50,28 @@
         <aui:input name="name" label="Name" value="<%= nameWorker %>"></aui:input>
         <aui:input name="lastname" label="Lastname" value="<%= lastnameWorker %>"></aui:input>
         <aui:input name="patronymic" label="Patronymic" value="<%= patronymicWorker %>"></aui:input>
-        <aui:input name="gender" label="Gender" checked="true" type="checkbox"/>
+        <aui:input name="is_man" label="I is man" checked="true" type="checkbox"/>
         <aui:input name="date_of_birth" label="Date of birth" type="date"/>
         <aui:input name="position" label="Position" type="text"/>
         <aui:input name="date_of_employment" label="Date of employment" type="date"/>
         <aui:input name="salary_level" label="Salary level" type="number"/>
         <aui:input name="work_number" label="Work number" type="tel"/>
         <aui:input name="telephone_number" label="Telephone number" type="tel"/>
-        <aui:input name="banking_organization" label="Banking organization" type="number"/>
+        <aui:select name="bankId" label="Banking organization">
+            <%
+                ArrayList<Bank> banks = BankLocalServiceUtil.findAll();
+                for (Bank bank : banks) {%>
+            <aui:option value="<%= bank.getBankId() %>"><%= bank.getName() %></aui:option>
+            <%}%>
+        </aui:select>
+
+        <aui:select name="officialPositionId" label="Official position">
+            <%
+                ArrayList<OfficialPosition> banks = OfficialPositionLocalServiceUtil.findAll();
+                for (OfficialPosition bank : banks) {%>
+            <aui:option value="<%= bank.getOfficialPositionId() %>"><%= bank.getName() %></aui:option>
+            <%}%>
+        </aui:select>
         <aui:input name="archival_status" label="Archival status" type="checkbox"/>
     </aui:fieldset>
 

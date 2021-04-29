@@ -24,7 +24,8 @@
 		<field name="salary_level" type="long" />
 		<field name="work_number" type="String" />
 		<field name="telephone_number" type="String" />
-		<field name="banking_organization" type="long" />
 		<field name="archival_status" type="boolean" />
+		<field name="bankId" type="long" />
+		<field name="officialPositionId" type="long" />
 	</model>
 </model-hints>

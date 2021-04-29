@@ -32,12 +32,13 @@ public class WorkerCacheModel implements CacheModel<Worker>, Externalizable {
     public long salary_level;
     public String work_number;
     public String telephone_number;
-    public long banking_organization;
     public boolean archival_status;
+    public long bankId;
+    public long officialPositionId;
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(27);
+        StringBundler sb = new StringBundler(29);
 
         sb.append("{workerId=");
         sb.append(workerId);
@@ -61,10 +62,12 @@ public class WorkerCacheModel implements CacheModel<Worker>, Externalizable {
         sb.append(work_number);
         sb.append(", telephone_number=");
         sb.append(telephone_number);
-        sb.append(", banking_organization=");
-        sb.append(banking_organization);
         sb.append(", archival_status=");
         sb.append(archival_status);
+        sb.append(", bankId=");
+        sb.append(bankId);
+        sb.append(", officialPositionId=");
+        sb.append(officialPositionId);
         sb.append("}");
 
         return sb.toString();
@@ -128,8 +131,9 @@ public class WorkerCacheModel implements CacheModel<Worker>, Externalizable {
             workerImpl.setTelephone_number(telephone_number);
         }
 
-        workerImpl.setBanking_organization(banking_organization);
         workerImpl.setArchival_status(archival_status);
+        workerImpl.setBankId(bankId);
+        workerImpl.setOfficialPositionId(officialPositionId);
 
         workerImpl.resetOriginalValues();
 
@@ -149,8 +153,9 @@ public class WorkerCacheModel implements CacheModel<Worker>, Externalizable {
         salary_level = objectInput.readLong();
         work_number = objectInput.readUTF();
         telephone_number = objectInput.readUTF();
-        banking_organization = objectInput.readLong();
         archival_status = objectInput.readBoolean();
+        bankId = objectInput.readLong();
+        officialPositionId = objectInput.readLong();
     }
 
     @Override
@@ -200,7 +205,8 @@ public class WorkerCacheModel implements CacheModel<Worker>, Externalizable {
             objectOutput.writeUTF(telephone_number);
         }
 
-        objectOutput.writeLong(banking_organization);
         objectOutput.writeBoolean(archival_status);
+        objectOutput.writeLong(bankId);
+        objectOutput.writeLong(officialPositionId);
     }
 }

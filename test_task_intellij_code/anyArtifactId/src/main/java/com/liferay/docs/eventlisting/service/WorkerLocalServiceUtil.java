@@ -265,9 +265,16 @@ public class WorkerLocalServiceUtil {
 
     public static com.liferay.docs.eventlisting.model.Worker addWorker(
         java.lang.String name, java.lang.String lastname,
-        java.lang.String patronymic)
+        java.lang.String patronymic, boolean isMan, java.util.Date birthDate,
+        java.lang.String position, java.util.Date employmentDate,
+        long salaryLevel, java.lang.String workNumber,
+        java.lang.String telephoneNumber, long idBankService,
+        long officialPositionId, boolean isArchived)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().addWorker(name, lastname, patronymic);
+        return getService()
+                   .addWorker(name, lastname, patronymic, isMan, birthDate,
+            position, employmentDate, salaryLevel, workNumber, telephoneNumber,
+            idBankService, officialPositionId, isArchived);
     }
 
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()

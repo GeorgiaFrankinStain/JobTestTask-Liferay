@@ -97,6 +97,143 @@ public class WorkerUtil {
     }
 
     /**
+    * Returns the worker where bankId = &#63; or throws a {@link com.liferay.docs.eventlisting.NoSuchWorkerException} if it could not be found.
+    *
+    * @param bankId the bank ID
+    * @return the matching worker
+    * @throws com.liferay.docs.eventlisting.NoSuchWorkerException if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker findByBankId(
+        long bankId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().findByBankId(bankId);
+    }
+
+    /**
+    * Returns the worker where bankId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+    *
+    * @param bankId the bank ID
+    * @return the matching worker, or <code>null</code> if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker fetchByBankId(
+        long bankId) throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().fetchByBankId(bankId);
+    }
+
+    /**
+    * Returns the worker where bankId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+    *
+    * @param bankId the bank ID
+    * @param retrieveFromCache whether to use the finder cache
+    * @return the matching worker, or <code>null</code> if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker fetchByBankId(
+        long bankId, boolean retrieveFromCache)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().fetchByBankId(bankId, retrieveFromCache);
+    }
+
+    /**
+    * Removes the worker where bankId = &#63; from the database.
+    *
+    * @param bankId the bank ID
+    * @return the worker that was removed
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker removeByBankId(
+        long bankId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().removeByBankId(bankId);
+    }
+
+    /**
+    * Returns the number of workers where bankId = &#63;.
+    *
+    * @param bankId the bank ID
+    * @return the number of matching workers
+    * @throws SystemException if a system exception occurred
+    */
+    public static int countByBankId(long bankId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().countByBankId(bankId);
+    }
+
+    /**
+    * Returns the worker where officialPositionId = &#63; or throws a {@link com.liferay.docs.eventlisting.NoSuchWorkerException} if it could not be found.
+    *
+    * @param officialPositionId the official position ID
+    * @return the matching worker
+    * @throws com.liferay.docs.eventlisting.NoSuchWorkerException if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker findByOfficialPositionId(
+        long officialPositionId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().findByOfficialPositionId(officialPositionId);
+    }
+
+    /**
+    * Returns the worker where officialPositionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+    *
+    * @param officialPositionId the official position ID
+    * @return the matching worker, or <code>null</code> if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker fetchByOfficialPositionId(
+        long officialPositionId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().fetchByOfficialPositionId(officialPositionId);
+    }
+
+    /**
+    * Returns the worker where officialPositionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+    *
+    * @param officialPositionId the official position ID
+    * @param retrieveFromCache whether to use the finder cache
+    * @return the matching worker, or <code>null</code> if a matching worker could not be found
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker fetchByOfficialPositionId(
+        long officialPositionId, boolean retrieveFromCache)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence()
+                   .fetchByOfficialPositionId(officialPositionId,
+            retrieveFromCache);
+    }
+
+    /**
+    * Removes the worker where officialPositionId = &#63; from the database.
+    *
+    * @param officialPositionId the official position ID
+    * @return the worker that was removed
+    * @throws SystemException if a system exception occurred
+    */
+    public static com.liferay.docs.eventlisting.model.Worker removeByOfficialPositionId(
+        long officialPositionId)
+        throws com.liferay.docs.eventlisting.NoSuchWorkerException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().removeByOfficialPositionId(officialPositionId);
+    }
+
+    /**
+    * Returns the number of workers where officialPositionId = &#63;.
+    *
+    * @param officialPositionId the official position ID
+    * @return the number of matching workers
+    * @throws SystemException if a system exception occurred
+    */
+    public static int countByOfficialPositionId(long officialPositionId)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getPersistence().countByOfficialPositionId(officialPositionId);
+    }
+
+    /**
     * Caches the worker in the entity cache if it is enabled.
     *
     * @param worker the worker

@@ -48,8 +48,9 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
         attributes.put("salary_level", getSalary_level());
         attributes.put("work_number", getWork_number());
         attributes.put("telephone_number", getTelephone_number());
-        attributes.put("banking_organization", getBanking_organization());
         attributes.put("archival_status", getArchival_status());
+        attributes.put("bankId", getBankId());
+        attributes.put("officialPositionId", getOfficialPositionId());
 
         return attributes;
     }
@@ -122,17 +123,22 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
             setTelephone_number(telephone_number);
         }
 
-        Long banking_organization = (Long) attributes.get(
-                "banking_organization");
-
-        if (banking_organization != null) {
-            setBanking_organization(banking_organization);
-        }
-
         Boolean archival_status = (Boolean) attributes.get("archival_status");
 
         if (archival_status != null) {
             setArchival_status(archival_status);
+        }
+
+        Long bankId = (Long) attributes.get("bankId");
+
+        if (bankId != null) {
+            setBankId(bankId);
+        }
+
+        Long officialPositionId = (Long) attributes.get("officialPositionId");
+
+        if (officialPositionId != null) {
+            setOfficialPositionId(officialPositionId);
         }
     }
 
@@ -387,26 +393,6 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
     }
 
     /**
-    * Returns the banking_organization of this worker.
-    *
-    * @return the banking_organization of this worker
-    */
-    @Override
-    public long getBanking_organization() {
-        return _worker.getBanking_organization();
-    }
-
-    /**
-    * Sets the banking_organization of this worker.
-    *
-    * @param banking_organization the banking_organization of this worker
-    */
-    @Override
-    public void setBanking_organization(long banking_organization) {
-        _worker.setBanking_organization(banking_organization);
-    }
-
-    /**
     * Returns the archival_status of this worker.
     *
     * @return the archival_status of this worker
@@ -434,6 +420,46 @@ public class WorkerWrapper implements Worker, ModelWrapper<Worker> {
     @Override
     public void setArchival_status(boolean archival_status) {
         _worker.setArchival_status(archival_status);
+    }
+
+    /**
+    * Returns the bank ID of this worker.
+    *
+    * @return the bank ID of this worker
+    */
+    @Override
+    public long getBankId() {
+        return _worker.getBankId();
+    }
+
+    /**
+    * Sets the bank ID of this worker.
+    *
+    * @param bankId the bank ID of this worker
+    */
+    @Override
+    public void setBankId(long bankId) {
+        _worker.setBankId(bankId);
+    }
+
+    /**
+    * Returns the official position ID of this worker.
+    *
+    * @return the official position ID of this worker
+    */
+    @Override
+    public long getOfficialPositionId() {
+        return _worker.getOfficialPositionId();
+    }
+
+    /**
+    * Sets the official position ID of this worker.
+    *
+    * @param officialPositionId the official position ID of this worker
+    */
+    @Override
+    public void setOfficialPositionId(long officialPositionId) {
+        _worker.setOfficialPositionId(officialPositionId);
     }
 
     @Override

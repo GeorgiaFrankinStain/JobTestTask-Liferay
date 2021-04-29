@@ -11,8 +11,6 @@
 
             <column name="workerId" type="long" primary="true" />
 
-
-
             <!-- Other fields -->
 
             <column name="name" type="String" />
@@ -26,20 +24,23 @@
             <column name="salary_level" type="long"/>
             <column name="work_number" type="String"/>
             <column name="telephone_number" type="String"/>
-            <column name="banking_organization" type="long"/>
             <column name="archival_status" type="boolean"/>
+            <column name="bankId" type="long"/>
+            <column name="officialPositionId" type="long"/>
+            <!-- Order -->
 <!--
-            &lt;!&ndash; Order &ndash;&gt;
-
             <order by="asc">
                     <order-column name="date" />
-            </order>
+            </order>-->
 
-            &lt;!&ndash; Finder methods &ndash;&gt;
+            <!-- Finder methods -->
 
-            <finder name="GroupId" return-type="Collection">
-                    <finder-column name="groupId" />
-            </finder>-->
+            <finder name="BankId" return-type="Bank">
+                    <finder-column name="bankId" />
+            </finder>
+            <finder name="OfficialPositionId" return-type="OfficialPosition">
+                    <finder-column name="officialPositionId" />
+            </finder>
         </entity>
         <entity name="Bank" local-service="true" remote-service="false">
 
@@ -52,7 +53,6 @@
             <column name="address" type="String" />
         </entity>
         <entity name="OfficialPosition" local-service="true" remote-service="false">
-
             <!-- PK fields -->
             <column name="officialPositionId" type="long" primary="true" />
 
@@ -60,40 +60,4 @@
             <column name="name" type="String" />
             <column name="is_archived" type="boolean" />
         </entity>
-<!--
-        <entity name="Location" local-service="true" remote-service="true">
-
-            &lt;!&ndash; PK fields &ndash;&gt;
-
-            <column name="locationId" type="long" primary="true" />
-
-            &lt;!&ndash; Audit fields &ndash;&gt;
-
-            <column name="companyId" type="long" />
-            <column name="groupId" type="long" />
-            <column name="userId" type="long" />
-            <column name="createDate" type="Date" />
-            <column name="modifiedDate" type="Date" />
-
-            &lt;!&ndash; Other fields &ndash;&gt;
-
-            <column name="name" type="String" />
-            <column name="description" type="String" />
-            <column name="streetAddress" type="String" />
-            <column name="city" type="String" />
-            <column name="stateOrProvince" type="String" />
-            <column name="country" type="String" />
-            
-            &lt;!&ndash; Order &ndash;&gt;
-
-            <order by="asc">
-                    <order-column name="name" />
-            </order>
-
-            &lt;!&ndash; Finder methods &ndash;&gt;
-
-            <finder name="GroupId" return-type="Collection">
-                    <finder-column name="groupId" />
-            </finder>
-        </entity>-->
     </service-builder>

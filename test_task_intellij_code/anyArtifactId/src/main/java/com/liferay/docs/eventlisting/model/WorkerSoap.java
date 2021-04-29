@@ -24,8 +24,9 @@ public class WorkerSoap implements Serializable {
     private long _salary_level;
     private String _work_number;
     private String _telephone_number;
-    private long _banking_organization;
     private boolean _archival_status;
+    private long _bankId;
+    private long _officialPositionId;
 
     public WorkerSoap() {
     }
@@ -44,8 +45,9 @@ public class WorkerSoap implements Serializable {
         soapModel.setSalary_level(model.getSalary_level());
         soapModel.setWork_number(model.getWork_number());
         soapModel.setTelephone_number(model.getTelephone_number());
-        soapModel.setBanking_organization(model.getBanking_organization());
         soapModel.setArchival_status(model.getArchival_status());
+        soapModel.setBankId(model.getBankId());
+        soapModel.setOfficialPositionId(model.getOfficialPositionId());
 
         return soapModel;
     }
@@ -186,14 +188,6 @@ public class WorkerSoap implements Serializable {
         _telephone_number = telephone_number;
     }
 
-    public long getBanking_organization() {
-        return _banking_organization;
-    }
-
-    public void setBanking_organization(long banking_organization) {
-        _banking_organization = banking_organization;
-    }
-
     public boolean getArchival_status() {
         return _archival_status;
     }
@@ -204,5 +198,21 @@ public class WorkerSoap implements Serializable {
 
     public void setArchival_status(boolean archival_status) {
         _archival_status = archival_status;
+    }
+
+    public long getBankId() {
+        return _bankId;
+    }
+
+    public void setBankId(long bankId) {
+        _bankId = bankId;
+    }
+
+    public long getOfficialPositionId() {
+        return _officialPositionId;
+    }
+
+    public void setOfficialPositionId(long officialPositionId) {
+        _officialPositionId = officialPositionId;
     }
 }

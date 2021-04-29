@@ -213,20 +213,6 @@ public interface WorkerModel extends BaseModel<Worker> {
     public void setTelephone_number(String telephone_number);
 
     /**
-     * Returns the banking_organization of this worker.
-     *
-     * @return the banking_organization of this worker
-     */
-    public long getBanking_organization();
-
-    /**
-     * Sets the banking_organization of this worker.
-     *
-     * @param banking_organization the banking_organization of this worker
-     */
-    public void setBanking_organization(long banking_organization);
-
-    /**
      * Returns the archival_status of this worker.
      *
      * @return the archival_status of this worker
@@ -246,6 +232,34 @@ public interface WorkerModel extends BaseModel<Worker> {
      * @param archival_status the archival_status of this worker
      */
     public void setArchival_status(boolean archival_status);
+
+    /**
+     * Returns the bank ID of this worker.
+     *
+     * @return the bank ID of this worker
+     */
+    public long getBankId();
+
+    /**
+     * Sets the bank ID of this worker.
+     *
+     * @param bankId the bank ID of this worker
+     */
+    public void setBankId(long bankId);
+
+    /**
+     * Returns the official position ID of this worker.
+     *
+     * @return the official position ID of this worker
+     */
+    public long getOfficialPositionId();
+
+    /**
+     * Sets the official position ID of this worker.
+     *
+     * @param officialPositionId the official position ID of this worker
+     */
+    public void setOfficialPositionId(long officialPositionId);
 
     @Override
     public boolean isNew();

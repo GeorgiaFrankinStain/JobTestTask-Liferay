@@ -56,10 +56,11 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
             { "salary_level", Types.BIGINT },
             { "work_number", Types.VARCHAR },
             { "telephone_number", Types.VARCHAR },
-            { "banking_organization", Types.BIGINT },
-            { "archival_status", Types.BOOLEAN }
+            { "archival_status", Types.BOOLEAN },
+            { "bankId", Types.BIGINT },
+            { "officialPositionId", Types.BIGINT }
         };
-    public static final String TABLE_SQL_CREATE = "create table Event_Worker (workerId LONG not null primary key,name VARCHAR(75) null,lastname VARCHAR(75) null,patronymic VARCHAR(75) null,gender BOOLEAN,date_of_birth DATE null,position VARCHAR(75) null,date_of_employment DATE null,salary_level LONG,work_number VARCHAR(75) null,telephone_number VARCHAR(75) null,banking_organization LONG,archival_status BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table Event_Worker (workerId LONG not null primary key,name VARCHAR(75) null,lastname VARCHAR(75) null,patronymic VARCHAR(75) null,gender BOOLEAN,date_of_birth DATE null,position VARCHAR(75) null,date_of_employment DATE null,salary_level LONG,work_number VARCHAR(75) null,telephone_number VARCHAR(75) null,archival_status BOOLEAN,bankId LONG,officialPositionId LONG)";
     public static final String TABLE_SQL_DROP = "drop table Event_Worker";
     public static final String ORDER_BY_JPQL = " ORDER BY worker.workerId ASC";
     public static final String ORDER_BY_SQL = " ORDER BY Event_Worker.workerId ASC";
@@ -72,7 +73,12 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
                 "value.object.finder.cache.enabled.com.liferay.docs.eventlisting.model.Worker"),
             true);
-    public static final boolean COLUMN_BITMASK_ENABLED = false;
+    public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+                "value.object.column.bitmask.enabled.com.liferay.docs.eventlisting.model.Worker"),
+            true);
+    public static long BANKID_COLUMN_BITMASK = 1L;
+    public static long OFFICIALPOSITIONID_COLUMN_BITMASK = 2L;
+    public static long WORKERID_COLUMN_BITMASK = 4L;
     public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
                 "lock.expiration.time.com.liferay.docs.eventlisting.model.Worker"));
     private static ClassLoader _classLoader = Worker.class.getClassLoader();
@@ -88,8 +94,14 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     private long _salary_level;
     private String _work_number;
     private String _telephone_number;
-    private long _banking_organization;
     private boolean _archival_status;
+    private long _bankId;
+    private long _originalBankId;
+    private boolean _setOriginalBankId;
+    private long _officialPositionId;
+    private long _originalOfficialPositionId;
+    private boolean _setOriginalOfficialPositionId;
+    private long _columnBitmask;
     private Worker _escapedModel;
 
     public WorkerModelImpl() {
@@ -140,8 +152,9 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         attributes.put("salary_level", getSalary_level());
         attributes.put("work_number", getWork_number());
         attributes.put("telephone_number", getTelephone_number());
-        attributes.put("banking_organization", getBanking_organization());
         attributes.put("archival_status", getArchival_status());
+        attributes.put("bankId", getBankId());
+        attributes.put("officialPositionId", getOfficialPositionId());
 
         return attributes;
     }
@@ -214,17 +227,22 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
             setTelephone_number(telephone_number);
         }
 
-        Long banking_organization = (Long) attributes.get(
-                "banking_organization");
-
-        if (banking_organization != null) {
-            setBanking_organization(banking_organization);
-        }
-
         Boolean archival_status = (Boolean) attributes.get("archival_status");
 
         if (archival_status != null) {
             setArchival_status(archival_status);
+        }
+
+        Long bankId = (Long) attributes.get("bankId");
+
+        if (bankId != null) {
+            setBankId(bankId);
+        }
+
+        Long officialPositionId = (Long) attributes.get("officialPositionId");
+
+        if (officialPositionId != null) {
+            setOfficialPositionId(officialPositionId);
         }
     }
 
@@ -368,16 +386,6 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     }
 
     @Override
-    public long getBanking_organization() {
-        return _banking_organization;
-    }
-
-    @Override
-    public void setBanking_organization(long banking_organization) {
-        _banking_organization = banking_organization;
-    }
-
-    @Override
     public boolean getArchival_status() {
         return _archival_status;
     }
@@ -390,6 +398,54 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
     @Override
     public void setArchival_status(boolean archival_status) {
         _archival_status = archival_status;
+    }
+
+    @Override
+    public long getBankId() {
+        return _bankId;
+    }
+
+    @Override
+    public void setBankId(long bankId) {
+        _columnBitmask |= BANKID_COLUMN_BITMASK;
+
+        if (!_setOriginalBankId) {
+            _setOriginalBankId = true;
+
+            _originalBankId = _bankId;
+        }
+
+        _bankId = bankId;
+    }
+
+    public long getOriginalBankId() {
+        return _originalBankId;
+    }
+
+    @Override
+    public long getOfficialPositionId() {
+        return _officialPositionId;
+    }
+
+    @Override
+    public void setOfficialPositionId(long officialPositionId) {
+        _columnBitmask |= OFFICIALPOSITIONID_COLUMN_BITMASK;
+
+        if (!_setOriginalOfficialPositionId) {
+            _setOriginalOfficialPositionId = true;
+
+            _originalOfficialPositionId = _officialPositionId;
+        }
+
+        _officialPositionId = officialPositionId;
+    }
+
+    public long getOriginalOfficialPositionId() {
+        return _originalOfficialPositionId;
+    }
+
+    public long getColumnBitmask() {
+        return _columnBitmask;
     }
 
     @Override
@@ -430,8 +486,9 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         workerImpl.setSalary_level(getSalary_level());
         workerImpl.setWork_number(getWork_number());
         workerImpl.setTelephone_number(getTelephone_number());
-        workerImpl.setBanking_organization(getBanking_organization());
         workerImpl.setArchival_status(getArchival_status());
+        workerImpl.setBankId(getBankId());
+        workerImpl.setOfficialPositionId(getOfficialPositionId());
 
         workerImpl.resetOriginalValues();
 
@@ -479,6 +536,17 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
 
     @Override
     public void resetOriginalValues() {
+        WorkerModelImpl workerModelImpl = this;
+
+        workerModelImpl._originalBankId = workerModelImpl._bankId;
+
+        workerModelImpl._setOriginalBankId = false;
+
+        workerModelImpl._originalOfficialPositionId = workerModelImpl._officialPositionId;
+
+        workerModelImpl._setOriginalOfficialPositionId = false;
+
+        workerModelImpl._columnBitmask = 0;
     }
 
     @Override
@@ -555,16 +623,18 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
             workerCacheModel.telephone_number = null;
         }
 
-        workerCacheModel.banking_organization = getBanking_organization();
-
         workerCacheModel.archival_status = getArchival_status();
+
+        workerCacheModel.bankId = getBankId();
+
+        workerCacheModel.officialPositionId = getOfficialPositionId();
 
         return workerCacheModel;
     }
 
     @Override
     public String toString() {
-        StringBundler sb = new StringBundler(27);
+        StringBundler sb = new StringBundler(29);
 
         sb.append("{workerId=");
         sb.append(getWorkerId());
@@ -588,10 +658,12 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         sb.append(getWork_number());
         sb.append(", telephone_number=");
         sb.append(getTelephone_number());
-        sb.append(", banking_organization=");
-        sb.append(getBanking_organization());
         sb.append(", archival_status=");
         sb.append(getArchival_status());
+        sb.append(", bankId=");
+        sb.append(getBankId());
+        sb.append(", officialPositionId=");
+        sb.append(getOfficialPositionId());
         sb.append("}");
 
         return sb.toString();
@@ -599,7 +671,7 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
 
     @Override
     public String toXmlString() {
-        StringBundler sb = new StringBundler(43);
+        StringBundler sb = new StringBundler(46);
 
         sb.append("<model><model-name>");
         sb.append("com.liferay.docs.eventlisting.model.Worker");
@@ -650,12 +722,16 @@ public class WorkerModelImpl extends BaseModelImpl<Worker>
         sb.append(getTelephone_number());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>banking_organization</column-name><column-value><![CDATA[");
-        sb.append(getBanking_organization());
-        sb.append("]]></column-value></column>");
-        sb.append(
             "<column><column-name>archival_status</column-name><column-value><![CDATA[");
         sb.append(getArchival_status());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>bankId</column-name><column-value><![CDATA[");
+        sb.append(getBankId());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>officialPositionId</column-name><column-value><![CDATA[");
+        sb.append(getOfficialPositionId());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

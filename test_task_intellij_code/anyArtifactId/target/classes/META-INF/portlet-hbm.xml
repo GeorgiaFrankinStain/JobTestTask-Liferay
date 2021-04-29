@@ -37,7 +37,8 @@
 		<property name="salary_level" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="work_number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="telephone_number" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="banking_organization" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="archival_status" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="bankId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="officialPositionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

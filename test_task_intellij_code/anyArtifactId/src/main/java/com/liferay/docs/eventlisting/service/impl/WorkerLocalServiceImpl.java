@@ -4,14 +4,9 @@ import com.liferay.docs.eventlisting.NoSuchWorkerException;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.base.WorkerLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.CacheModel;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Date;
 
 /**
  * The implementation of the worker local service.
@@ -33,13 +28,39 @@ public class WorkerLocalServiceImpl extends WorkerLocalServiceBaseImpl {
      *
      * Never reference this interface directly. Always use {@link com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil} to access the worker local service.
      */
-    public Worker addWorker(String name, String lastname, String patronymic) throws SystemException {
+
+    public Worker addWorker(
+            String name,
+            String lastname,
+            String patronymic,
+            boolean isMan,
+            Date birthDate,
+            String position,
+            Date employmentDate,
+            long salaryLevel,
+            String workNumber,
+            String telephoneNumber,
+            long idBankService,
+            long officialPositionId,
+            boolean isArchived
+    ) throws SystemException {
         long workerId = counterLocalService.increment(Worker.class.getName());
         Worker worker = workerPersistence.create(workerId);
 
         worker.setName(name);
         worker.setLastname(lastname);
         worker.setPatronymic(patronymic);
+        worker.setGender(isMan);
+        worker.setDate_of_birth(birthDate);
+        worker.setPosition(position);
+        worker.setDate_of_employment(employmentDate);
+        worker.setSalary_level(salaryLevel);
+        worker.setWork_number(workNumber);
+        worker.setTelephone_number(telephoneNumber);
+        worker.setBankId(idBankService);
+        worker.setOfficialPositionId(officialPositionId);
+        worker.setArchival_status(isArchived);
+
 
         super.addWorker(worker);
 
@@ -47,6 +68,7 @@ public class WorkerLocalServiceImpl extends WorkerLocalServiceBaseImpl {
 
         return worker;
     }
+
 
     public ArrayList<Worker> findAll() throws SystemException {
         ArrayList<Worker> result = new ArrayList<Worker>();

@@ -23,6 +23,7 @@ create table Event_Worker (
 	salary_level LONG,
 	work_number VARCHAR(75) null,
 	telephone_number VARCHAR(75) null,
-	banking_organization LONG,
-	archival_status BOOLEAN
+	archival_status BOOLEAN,
+	bankId LONG,
+	officialPositionId LONG
 );

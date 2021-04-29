@@ -11,6 +11,7 @@ import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
@@ -67,10 +69,34 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
     public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(WorkerModelImpl.ENTITY_CACHE_ENABLED,
             WorkerModelImpl.FINDER_CACHE_ENABLED, Long.class,
             FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
+    public static final FinderPath FINDER_PATH_FETCH_BY_BANKID = new FinderPath(WorkerModelImpl.ENTITY_CACHE_ENABLED,
+            WorkerModelImpl.FINDER_CACHE_ENABLED, WorkerImpl.class,
+            FINDER_CLASS_NAME_ENTITY, "fetchByBankId",
+            new String[] { Long.class.getName() },
+            WorkerModelImpl.BANKID_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_BANKID = new FinderPath(WorkerModelImpl.ENTITY_CACHE_ENABLED,
+            WorkerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBankId",
+            new String[] { Long.class.getName() });
+    private static final String _FINDER_COLUMN_BANKID_BANKID_2 = "worker.bankId = ?";
+    public static final FinderPath FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID = new FinderPath(WorkerModelImpl.ENTITY_CACHE_ENABLED,
+            WorkerModelImpl.FINDER_CACHE_ENABLED, WorkerImpl.class,
+            FINDER_CLASS_NAME_ENTITY, "fetchByOfficialPositionId",
+            new String[] { Long.class.getName() },
+            WorkerModelImpl.OFFICIALPOSITIONID_COLUMN_BITMASK);
+    public static final FinderPath FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID = new FinderPath(WorkerModelImpl.ENTITY_CACHE_ENABLED,
+            WorkerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+            FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+            "countByOfficialPositionId", new String[] { Long.class.getName() });
+    private static final String _FINDER_COLUMN_OFFICIALPOSITIONID_OFFICIALPOSITIONID_2 =
+        "worker.officialPositionId = ?";
     private static final String _SQL_SELECT_WORKER = "SELECT worker FROM Worker worker";
+    private static final String _SQL_SELECT_WORKER_WHERE = "SELECT worker FROM Worker worker WHERE ";
     private static final String _SQL_COUNT_WORKER = "SELECT COUNT(worker) FROM Worker worker";
+    private static final String _SQL_COUNT_WORKER_WHERE = "SELECT COUNT(worker) FROM Worker worker WHERE ";
     private static final String _ORDER_BY_ENTITY_ALIAS = "worker.";
     private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Worker exists with the primary key ";
+    private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Worker exists with the key {";
     private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
                 PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
     private static Log _log = LogFactoryUtil.getLog(WorkerPersistenceImpl.class);
@@ -98,6 +124,408 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
     }
 
     /**
+     * Returns the worker where bankId = &#63; or throws a {@link com.liferay.docs.eventlisting.NoSuchWorkerException} if it could not be found.
+     *
+     * @param bankId the bank ID
+     * @return the matching worker
+     * @throws com.liferay.docs.eventlisting.NoSuchWorkerException if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker findByBankId(long bankId)
+        throws NoSuchWorkerException, SystemException {
+        Worker worker = fetchByBankId(bankId);
+
+        if (worker == null) {
+            StringBundler msg = new StringBundler(4);
+
+            msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+            msg.append("bankId=");
+            msg.append(bankId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
+
+            throw new NoSuchWorkerException(msg.toString());
+        }
+
+        return worker;
+    }
+
+    /**
+     * Returns the worker where bankId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+     *
+     * @param bankId the bank ID
+     * @return the matching worker, or <code>null</code> if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker fetchByBankId(long bankId) throws SystemException {
+        return fetchByBankId(bankId, true);
+    }
+
+    /**
+     * Returns the worker where bankId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+     *
+     * @param bankId the bank ID
+     * @param retrieveFromCache whether to use the finder cache
+     * @return the matching worker, or <code>null</code> if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker fetchByBankId(long bankId, boolean retrieveFromCache)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { bankId };
+
+        Object result = null;
+
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_BANKID,
+                    finderArgs, this);
+        }
+
+        if (result instanceof Worker) {
+            Worker worker = (Worker) result;
+
+            if ((bankId != worker.getBankId())) {
+                result = null;
+            }
+        }
+
+        if (result == null) {
+            StringBundler query = new StringBundler(3);
+
+            query.append(_SQL_SELECT_WORKER_WHERE);
+
+            query.append(_FINDER_COLUMN_BANKID_BANKID_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(bankId);
+
+                List<Worker> list = q.list();
+
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BANKID,
+                        finderArgs, list);
+                } else {
+                    if ((list.size() > 1) && _log.isWarnEnabled()) {
+                        _log.warn(
+                            "WorkerPersistenceImpl.fetchByBankId(long, boolean) with parameters (" +
+                            StringUtil.merge(finderArgs) +
+                            ") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+                    }
+
+                    Worker worker = list.get(0);
+
+                    result = worker;
+
+                    cacheResult(worker);
+
+                    if ((worker.getBankId() != bankId)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BANKID,
+                            finderArgs, worker);
+                    }
+                }
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BANKID,
+                    finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        if (result instanceof List<?>) {
+            return null;
+        } else {
+            return (Worker) result;
+        }
+    }
+
+    /**
+     * Removes the worker where bankId = &#63; from the database.
+     *
+     * @param bankId the bank ID
+     * @return the worker that was removed
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker removeByBankId(long bankId)
+        throws NoSuchWorkerException, SystemException {
+        Worker worker = findByBankId(bankId);
+
+        return remove(worker);
+    }
+
+    /**
+     * Returns the number of workers where bankId = &#63;.
+     *
+     * @param bankId the bank ID
+     * @return the number of matching workers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByBankId(long bankId) throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_BANKID;
+
+        Object[] finderArgs = new Object[] { bankId };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_WORKER_WHERE);
+
+            query.append(_FINDER_COLUMN_BANKID_BANKID_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(bankId);
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
+     * Returns the worker where officialPositionId = &#63; or throws a {@link com.liferay.docs.eventlisting.NoSuchWorkerException} if it could not be found.
+     *
+     * @param officialPositionId the official position ID
+     * @return the matching worker
+     * @throws com.liferay.docs.eventlisting.NoSuchWorkerException if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker findByOfficialPositionId(long officialPositionId)
+        throws NoSuchWorkerException, SystemException {
+        Worker worker = fetchByOfficialPositionId(officialPositionId);
+
+        if (worker == null) {
+            StringBundler msg = new StringBundler(4);
+
+            msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+            msg.append("officialPositionId=");
+            msg.append(officialPositionId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
+
+            throw new NoSuchWorkerException(msg.toString());
+        }
+
+        return worker;
+    }
+
+    /**
+     * Returns the worker where officialPositionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+     *
+     * @param officialPositionId the official position ID
+     * @return the matching worker, or <code>null</code> if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker fetchByOfficialPositionId(long officialPositionId)
+        throws SystemException {
+        return fetchByOfficialPositionId(officialPositionId, true);
+    }
+
+    /**
+     * Returns the worker where officialPositionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+     *
+     * @param officialPositionId the official position ID
+     * @param retrieveFromCache whether to use the finder cache
+     * @return the matching worker, or <code>null</code> if a matching worker could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker fetchByOfficialPositionId(long officialPositionId,
+        boolean retrieveFromCache) throws SystemException {
+        Object[] finderArgs = new Object[] { officialPositionId };
+
+        Object result = null;
+
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                    finderArgs, this);
+        }
+
+        if (result instanceof Worker) {
+            Worker worker = (Worker) result;
+
+            if ((officialPositionId != worker.getOfficialPositionId())) {
+                result = null;
+            }
+        }
+
+        if (result == null) {
+            StringBundler query = new StringBundler(3);
+
+            query.append(_SQL_SELECT_WORKER_WHERE);
+
+            query.append(_FINDER_COLUMN_OFFICIALPOSITIONID_OFFICIALPOSITIONID_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(officialPositionId);
+
+                List<Worker> list = q.list();
+
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                        finderArgs, list);
+                } else {
+                    if ((list.size() > 1) && _log.isWarnEnabled()) {
+                        _log.warn(
+                            "WorkerPersistenceImpl.fetchByOfficialPositionId(long, boolean) with parameters (" +
+                            StringUtil.merge(finderArgs) +
+                            ") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+                    }
+
+                    Worker worker = list.get(0);
+
+                    result = worker;
+
+                    cacheResult(worker);
+
+                    if ((worker.getOfficialPositionId() != officialPositionId)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                            finderArgs, worker);
+                    }
+                }
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                    finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        if (result instanceof List<?>) {
+            return null;
+        } else {
+            return (Worker) result;
+        }
+    }
+
+    /**
+     * Removes the worker where officialPositionId = &#63; from the database.
+     *
+     * @param officialPositionId the official position ID
+     * @return the worker that was removed
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public Worker removeByOfficialPositionId(long officialPositionId)
+        throws NoSuchWorkerException, SystemException {
+        Worker worker = findByOfficialPositionId(officialPositionId);
+
+        return remove(worker);
+    }
+
+    /**
+     * Returns the number of workers where officialPositionId = &#63;.
+     *
+     * @param officialPositionId the official position ID
+     * @return the number of matching workers
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int countByOfficialPositionId(long officialPositionId)
+        throws SystemException {
+        FinderPath finderPath = FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID;
+
+        Object[] finderArgs = new Object[] { officialPositionId };
+
+        Long count = (Long) FinderCacheUtil.getResult(finderPath, finderArgs,
+                this);
+
+        if (count == null) {
+            StringBundler query = new StringBundler(2);
+
+            query.append(_SQL_COUNT_WORKER_WHERE);
+
+            query.append(_FINDER_COLUMN_OFFICIALPOSITIONID_OFFICIALPOSITIONID_2);
+
+            String sql = query.toString();
+
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(sql);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(officialPositionId);
+
+                count = (Long) q.uniqueResult();
+
+                FinderCacheUtil.putResult(finderPath, finderArgs, count);
+            } catch (Exception e) {
+                FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    /**
      * Caches the worker in the entity cache if it is enabled.
      *
      * @param worker the worker
@@ -106,6 +534,12 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
     public void cacheResult(Worker worker) {
         EntityCacheUtil.putResult(WorkerModelImpl.ENTITY_CACHE_ENABLED,
             WorkerImpl.class, worker.getPrimaryKey(), worker);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BANKID,
+            new Object[] { worker.getBankId() }, worker);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+            new Object[] { worker.getOfficialPositionId() }, worker);
 
         worker.resetOriginalValues();
     }
@@ -162,6 +596,8 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
 
         FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
         FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+        clearUniqueFindersCache(worker);
     }
 
     @Override
@@ -172,6 +608,81 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
         for (Worker worker : workers) {
             EntityCacheUtil.removeResult(WorkerModelImpl.ENTITY_CACHE_ENABLED,
                 WorkerImpl.class, worker.getPrimaryKey());
+
+            clearUniqueFindersCache(worker);
+        }
+    }
+
+    protected void cacheUniqueFindersCache(Worker worker) {
+        if (worker.isNew()) {
+            Object[] args = new Object[] { worker.getBankId() };
+
+            FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_BANKID, args,
+                Long.valueOf(1));
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BANKID, args, worker);
+
+            args = new Object[] { worker.getOfficialPositionId() };
+
+            FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID,
+                args, Long.valueOf(1));
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                args, worker);
+        } else {
+            WorkerModelImpl workerModelImpl = (WorkerModelImpl) worker;
+
+            if ((workerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_FETCH_BY_BANKID.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] { worker.getBankId() };
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_BANKID, args,
+                    Long.valueOf(1));
+                FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BANKID, args,
+                    worker);
+            }
+
+            if ((workerModelImpl.getColumnBitmask() &
+                    FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID.getColumnBitmask()) != 0) {
+                Object[] args = new Object[] { worker.getOfficialPositionId() };
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID,
+                    args, Long.valueOf(1));
+                FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                    args, worker);
+            }
+        }
+    }
+
+    protected void clearUniqueFindersCache(Worker worker) {
+        WorkerModelImpl workerModelImpl = (WorkerModelImpl) worker;
+
+        Object[] args = new Object[] { worker.getBankId() };
+
+        FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BANKID, args);
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BANKID, args);
+
+        if ((workerModelImpl.getColumnBitmask() &
+                FINDER_PATH_FETCH_BY_BANKID.getColumnBitmask()) != 0) {
+            args = new Object[] { workerModelImpl.getOriginalBankId() };
+
+            FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BANKID, args);
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BANKID, args);
+        }
+
+        args = new Object[] { worker.getOfficialPositionId() };
+
+        FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID,
+            args);
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+            args);
+
+        if ((workerModelImpl.getColumnBitmask() &
+                FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID.getColumnBitmask()) != 0) {
+            args = new Object[] { workerModelImpl.getOriginalOfficialPositionId() };
+
+            FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_OFFICIALPOSITIONID,
+                args);
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_OFFICIALPOSITIONID,
+                args);
         }
     }
 
@@ -299,12 +810,15 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
 
         FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
-        if (isNew) {
+        if (isNew || !WorkerModelImpl.COLUMN_BITMASK_ENABLED) {
             FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
         }
 
         EntityCacheUtil.putResult(WorkerModelImpl.ENTITY_CACHE_ENABLED,
             WorkerImpl.class, worker.getPrimaryKey(), worker);
+
+        clearUniqueFindersCache(worker);
+        cacheUniqueFindersCache(worker);
 
         return worker;
     }
@@ -330,8 +844,9 @@ public class WorkerPersistenceImpl extends BasePersistenceImpl<Worker>
         workerImpl.setSalary_level(worker.getSalary_level());
         workerImpl.setWork_number(worker.getWork_number());
         workerImpl.setTelephone_number(worker.getTelephone_number());
-        workerImpl.setBanking_organization(worker.getBanking_organization());
         workerImpl.setArchival_status(worker.isArchival_status());
+        workerImpl.setBankId(worker.getBankId());
+        workerImpl.setOfficialPositionId(worker.getOfficialPositionId());
 
         return workerImpl;
     }

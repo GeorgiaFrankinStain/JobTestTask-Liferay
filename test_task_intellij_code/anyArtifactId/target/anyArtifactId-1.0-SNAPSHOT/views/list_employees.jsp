@@ -58,7 +58,8 @@
         <liferay-ui:search-container-column-text property="salary_level" name="Salary level"/>
         <liferay-ui:search-container-column-text property="work_number" name="Work number"/>
         <liferay-ui:search-container-column-text property="telephone_number" name="Telephone number"/>
-        <liferay-ui:search-container-column-text property="banking_organization" name="Banking organization"/>
+        <liferay-ui:search-container-column-text property="bankId" name="Banking organization"/>
+        <liferay-ui:search-container-column-text property="officialPositionId" name="Official position"/>
         <liferay-ui:search-container-column-text property="archival_status" name="Archival status"/>
         <liferay-ui:search-container-column-text>
             <portlet:renderURL var="viewEditPage">
