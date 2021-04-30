@@ -270,9 +270,17 @@ public class BankLocalServiceWrapper implements BankLocalService,
 
     @Override
     public com.liferay.docs.eventlisting.model.Bank addBank(
-        java.lang.String name, java.lang.String bic, java.lang.String address)
+        Wrappers.Bank.DataBank dataBank)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return _bankLocalService.addBank(name, bic, address);
+        return _bankLocalService.addBank(dataBank);
+    }
+
+    @Override
+    public com.liferay.docs.eventlisting.model.Bank updateBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _bankLocalService.updateBank(dataBank);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.liferay.docs.eventlisting.service.impl;
 
+import Wrappers.Bank.DataBank;
 import com.liferay.docs.eventlisting.NoSuchBankException;
 import com.liferay.docs.eventlisting.model.Bank;
 import com.liferay.docs.eventlisting.service.base.BankLocalServiceBaseImpl;
@@ -27,18 +28,15 @@ public class BankLocalServiceImpl extends BankLocalServiceBaseImpl {
      *
      * Never reference this interface directly. Always use {@link com.liferay.docs.eventlisting.service.BankLocalServiceUtil} to access the bank local service.
      */
-    public Bank addBank(String name, String bic, String address) throws SystemException {
-        long bankId = counterLocalService.increment(Bank.class.getName());
-        Bank bank = bankPersistence.create(bankId);
-
-        bank.setName(name);
-        bank.setBic(bic);
-        bank.setAddress(address);
-
+    public Bank addBank(DataBank dataBank) throws SystemException {
+        Bank bank = dataBank.getCreateBank(counterLocalService, bankPersistence);
         super.addBank(bank);
+        return bank;
+    }
 
-
-
+    public Bank updateBank(DataBank dataBank) throws SystemException, NoSuchBankException {
+        Bank bank = dataBank.getUpdateBank(bankPersistence);
+        super.updateBank(bank);
         return bank;
     }
 

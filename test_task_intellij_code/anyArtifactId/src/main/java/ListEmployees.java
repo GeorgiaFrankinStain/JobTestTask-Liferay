@@ -1,3 +1,9 @@
+import Wrappers.Bank.DataBank;
+import Wrappers.Bank.DataBankClass;
+import Wrappers.OfficialPosition.DataOfficialPosition;
+import Wrappers.OfficialPosition.DataOfficialPositionClass;
+import Wrappers.Worker.DataWorker;
+import Wrappers.Worker.DataWorkerClass;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.BankLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil;
@@ -16,38 +22,32 @@ import java.util.Date;
 import java.util.List;
 
 public class ListEmployees extends MVCPortlet {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     public void delete(ActionRequest request, ActionResponse response) {
 
     }
     public void addEntry(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        String name = ParamUtil.getString(request, "name");
-        String lastname = ParamUtil.getString(request, "lastname");
-        String patronymic = ParamUtil.getString(request, "patronymic");
-        boolean isMan = ParamUtil.getBoolean(request, "is_man");
-        Date dateBirth = ParamUtil.getDate(request, "date_of_birth", dateFormat);
-        String position = ParamUtil.getString(request, "position");
-        Date dateEmployment = ParamUtil.getDate(request, "date_of_employment", dateFormat);
-        long salaryLevel = ParamUtil.getLong(request, "salary_level");
-        String workNumber = ParamUtil.getString(request, "work_number");
-        String telephoneNumber = ParamUtil.getString(request, "telephone_number");
-        long bankOrganization = ParamUtil.getLong(request, "bankId");
-        long officialPositionId = ParamUtil.getLong(request, "officialPositionId");
-        boolean isArchived = ParamUtil.getBoolean(request, "archival_status");
-
-        WorkerLocalServiceUtil.addWorker(name, lastname, patronymic, isMan, dateBirth, position, dateEmployment,
-                salaryLevel, workNumber, telephoneNumber, bankOrganization, officialPositionId, isArchived);
+        DataWorker dataWorker = new DataWorkerClass(request);
+        if (dataWorker.isCreatingWorker()) {
+            WorkerLocalServiceUtil.addWorker(dataWorker);
+        } else {
+            WorkerLocalServiceUtil.updateWorker(dataWorker);
+        }
     }
     public void addBank(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        String name = ParamUtil.getString(request, "name");
-        String bic = ParamUtil.getString(request, "bic");
-        String address = ParamUtil.getString(request, "address");
-        BankLocalServiceUtil.addBank(name, bic, address);
+        DataBank dataBank = new DataBankClass(request);
+        if (dataBank.isNew()) {
+            BankLocalServiceUtil.addBank(dataBank);
+        } else {
+            BankLocalServiceUtil.updateBank(dataBank);
+        }
     }
     public void addOfficialPosition(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
-        String name = ParamUtil.getString(request, "name");
-        boolean isArchived = ParamUtil.getBoolean(request, "is_archived");
-        OfficialPositionLocalServiceUtil.addOfficialPosition(name, isArchived);
+        DataOfficialPosition dataOfficialPosition = new DataOfficialPositionClass(request);
+        if (dataOfficialPosition.isNew()) {
+            OfficialPositionLocalServiceUtil.addOfficialPosition(dataOfficialPosition);
+        } else {
+            OfficialPositionLocalServiceUtil.updateOfficialPosition(dataOfficialPosition);
+        }
     }
 }

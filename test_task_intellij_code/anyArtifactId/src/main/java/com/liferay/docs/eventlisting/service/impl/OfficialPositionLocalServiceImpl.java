@@ -1,5 +1,6 @@
 package com.liferay.docs.eventlisting.service.impl;
 
+import Wrappers.OfficialPosition.DataOfficialPosition;
 import com.liferay.docs.eventlisting.NoSuchOfficialPositionException;
 import com.liferay.docs.eventlisting.model.OfficialPosition;
 import com.liferay.docs.eventlisting.service.base.OfficialPositionLocalServiceBaseImpl;
@@ -22,26 +23,27 @@ import java.util.ArrayList;
  * @see com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil
  */
 public class OfficialPositionLocalServiceImpl
-    extends OfficialPositionLocalServiceBaseImpl {
+        extends OfficialPositionLocalServiceBaseImpl {
     /*
      * NOTE FOR DEVELOPERS:
      *
      * Never reference this interface directly. Always use {@link com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil} to access the official position local service.
      */
 
-    public OfficialPosition addOfficialPosition(String name, boolean isArchived) throws SystemException {
-        long officialPositionId = counterLocalService.increment(OfficialPosition.class.getName());
-        OfficialPosition officialPosition = officialPositionPersistence.create(officialPositionId);
-
-        officialPosition.setName(name);
-        officialPosition.setIs_archived(isArchived);
+    public OfficialPosition addOfficialPosition(DataOfficialPosition dataOfficialPosition) throws SystemException {
+        OfficialPosition officialPosition = dataOfficialPosition.getCreateOfficialPosition(counterLocalService, officialPositionPersistence);
 
         super.addOfficialPosition(officialPosition);
 
-
-
         return officialPosition;
     }
+
+    public OfficialPosition updateOfficialPosition(DataOfficialPosition dataOfficialPosition) throws SystemException, NoSuchOfficialPositionException {
+        OfficialPosition officialPosition = dataOfficialPosition.getUpdateOfficialPosition(officialPositionPersistence);
+        super.updateOfficialPosition(officialPosition);
+        return officialPosition;
+    }
+
 
     public ArrayList<OfficialPosition> findAll() throws SystemException {
         ArrayList<OfficialPosition> result = new ArrayList<OfficialPosition>();
@@ -50,7 +52,6 @@ public class OfficialPositionLocalServiceImpl
     }
 
     public OfficialPosition findById(long OfficialPositionId) throws NoSuchOfficialPositionException, SystemException {
-        
         return officialPositionPersistence.findByPrimaryKey(OfficialPositionId);
     }
 }

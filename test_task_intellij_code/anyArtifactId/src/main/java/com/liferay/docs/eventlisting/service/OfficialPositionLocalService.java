@@ -242,8 +242,13 @@ public interface OfficialPositionLocalService extends BaseLocalService,
         throws java.lang.Throwable;
 
     public com.liferay.docs.eventlisting.model.OfficialPosition addOfficialPosition(
-        java.lang.String name, boolean isArchived)
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.docs.eventlisting.model.OfficialPosition updateOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException;
 
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.OfficialPosition> findAll()
         throws com.liferay.portal.kernel.exception.SystemException;

@@ -279,10 +279,17 @@ public class OfficialPositionLocalServiceWrapper
 
     @Override
     public com.liferay.docs.eventlisting.model.OfficialPosition addOfficialPosition(
-        java.lang.String name, boolean isArchived)
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return _officialPositionLocalService.addOfficialPosition(name,
-            isArchived);
+        return _officialPositionLocalService.addOfficialPosition(dataOfficialPosition);
+    }
+
+    @Override
+    public com.liferay.docs.eventlisting.model.OfficialPosition updateOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _officialPositionLocalService.updateOfficialPosition(dataOfficialPosition);
     }
 
     @Override

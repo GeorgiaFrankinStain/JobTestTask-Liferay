@@ -51,6 +51,8 @@ public class OfficialPositionLocalServiceClpInvoker {
     private String[] _methodParameterTypes47;
     private String _methodName48;
     private String[] _methodParameterTypes48;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
 
     public OfficialPositionLocalServiceClpInvoker() {
         _methodName0 = "addOfficialPosition";
@@ -145,15 +147,23 @@ public class OfficialPositionLocalServiceClpInvoker {
 
         _methodName46 = "addOfficialPosition";
 
-        _methodParameterTypes46 = new String[] { "java.lang.String", "boolean" };
+        _methodParameterTypes46 = new String[] {
+                "Wrappers.OfficialPosition.DataOfficialPosition"
+            };
 
-        _methodName47 = "findAll";
+        _methodName47 = "updateOfficialPosition";
 
-        _methodParameterTypes47 = new String[] {  };
+        _methodParameterTypes47 = new String[] {
+                "Wrappers.OfficialPosition.DataOfficialPosition"
+            };
 
-        _methodName48 = "findById";
+        _methodName48 = "findAll";
 
-        _methodParameterTypes48 = new String[] { "long" };
+        _methodParameterTypes48 = new String[] {  };
+
+        _methodName49 = "findById";
+
+        _methodParameterTypes49 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -259,17 +269,21 @@ public class OfficialPositionLocalServiceClpInvoker {
 
         if (_methodName46.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-            return OfficialPositionLocalServiceUtil.addOfficialPosition((java.lang.String) arguments[0],
-                ((Boolean) arguments[1]).booleanValue());
+            return OfficialPositionLocalServiceUtil.addOfficialPosition((Wrappers.OfficialPosition.DataOfficialPosition) arguments[0]);
         }
 
         if (_methodName47.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-            return OfficialPositionLocalServiceUtil.findAll();
+            return OfficialPositionLocalServiceUtil.updateOfficialPosition((Wrappers.OfficialPosition.DataOfficialPosition) arguments[0]);
         }
 
         if (_methodName48.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+            return OfficialPositionLocalServiceUtil.findAll();
+        }
+
+        if (_methodName49.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
             return OfficialPositionLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 

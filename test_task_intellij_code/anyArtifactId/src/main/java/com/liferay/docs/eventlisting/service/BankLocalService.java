@@ -238,8 +238,13 @@ public interface BankLocalService extends BaseLocalService, InvokableLocalServic
         throws java.lang.Throwable;
 
     public com.liferay.docs.eventlisting.model.Bank addBank(
-        java.lang.String name, java.lang.String bic, java.lang.String address)
+        Wrappers.Bank.DataBank dataBank)
         throws com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.docs.eventlisting.model.Bank updateBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException;
 
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Bank> findAll()
         throws com.liferay.portal.kernel.exception.SystemException;

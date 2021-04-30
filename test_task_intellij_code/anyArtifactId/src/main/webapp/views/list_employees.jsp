@@ -47,6 +47,7 @@
     >
 
 
+        <liferay-ui:search-container-column-text value="<%= String.valueOf(worker.getWorkerId()) %>" />
         <liferay-ui:search-container-column-text property="name" name="Name" />
         <liferay-ui:search-container-column-text property="lastname" name="Lastname" />
         <liferay-ui:search-container-column-text property="patronymic" name="Patronymic" />
@@ -63,7 +64,7 @@
         <liferay-ui:search-container-column-text property="archival_status" name="Archival status"/>
         <liferay-ui:search-container-column-text>
             <portlet:renderURL var="viewEditPage">
-                <portlet:param name="workerId" value='<%=String.valueOf(worker.getWorkerId()) %>'/>
+                <portlet:param name="workerId" value='<%= String.valueOf(worker.getWorkerId()) %>'/>
                 <portlet:param name="jspPage" value="/views/edit_entry.jsp"></portlet:param>
             </portlet:renderURL>
             <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>

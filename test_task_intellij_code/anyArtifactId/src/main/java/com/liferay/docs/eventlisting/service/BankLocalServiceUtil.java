@@ -262,9 +262,16 @@ public class BankLocalServiceUtil {
     }
 
     public static com.liferay.docs.eventlisting.model.Bank addBank(
-        java.lang.String name, java.lang.String bic, java.lang.String address)
+        Wrappers.Bank.DataBank dataBank)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().addBank(name, bic, address);
+        return getService().addBank(dataBank);
+    }
+
+    public static com.liferay.docs.eventlisting.model.Bank updateBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().updateBank(dataBank);
     }
 
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.Bank> findAll()

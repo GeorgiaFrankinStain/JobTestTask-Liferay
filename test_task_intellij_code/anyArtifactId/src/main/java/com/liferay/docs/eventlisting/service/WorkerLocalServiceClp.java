@@ -50,6 +50,8 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
     private String[] _methodParameterTypes20;
     private String _methodName21;
     private String[] _methodParameterTypes21;
+    private String _methodName22;
+    private String[] _methodParameterTypes22;
 
     public WorkerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -146,20 +148,19 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
 
         _methodName19 = "addWorker";
 
-        _methodParameterTypes19 = new String[] {
-                "java.lang.String", "java.lang.String", "java.lang.String",
-                "boolean", "java.util.Date", "java.lang.String",
-                "java.util.Date", "long", "java.lang.String", "java.lang.String",
-                "long", "long", "boolean"
-            };
+        _methodParameterTypes19 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName20 = "findAll";
+        _methodName20 = "updateWorker";
 
-        _methodParameterTypes20 = new String[] {  };
+        _methodParameterTypes20 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName21 = "findById";
+        _methodName21 = "findAll";
 
-        _methodParameterTypes21 = new String[] { "long" };
+        _methodParameterTypes21 = new String[] {  };
+
+        _methodName22 = "findById";
+
+        _methodParameterTypes22 = new String[] { "long" };
     }
 
     @Override
@@ -676,47 +677,54 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
 
     @Override
     public com.liferay.docs.eventlisting.model.Worker addWorker(
-        java.lang.String name, java.lang.String lastname,
-        java.lang.String patronymic, boolean isMan, java.util.Date birthDate,
-        java.lang.String position, java.util.Date employmentDate,
-        long salaryLevel, java.lang.String workNumber,
-        java.lang.String telephoneNumber, long idBankService,
-        long officialPositionId, boolean isArchived)
-        throws com.liferay.portal.kernel.exception.SystemException {
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName19,
                     _methodParameterTypes19,
-                    new Object[] {
-                        ClpSerializer.translateInput(name),
-                        
-                    ClpSerializer.translateInput(lastname),
-                        
-                    ClpSerializer.translateInput(patronymic),
-                        
-                    isMan,
-                        
-                    ClpSerializer.translateInput(birthDate),
-                        
-                    ClpSerializer.translateInput(position),
-                        
-                    ClpSerializer.translateInput(employmentDate),
-                        
-                    salaryLevel,
-                        
-                    ClpSerializer.translateInput(workNumber),
-                        
-                    ClpSerializer.translateInput(telephoneNumber),
-                        
-                    idBankService,
-                        
-                    officialPositionId,
-                        
-                    isArchived
-                    });
+                    new Object[] { ClpSerializer.translateInput(dataWorker) });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.NoSuchModelException) {
+                throw (com.liferay.portal.NoSuchModelException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.docs.eventlisting.model.Worker) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.docs.eventlisting.model.Worker updateWorker(
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName20,
+                    _methodParameterTypes20,
+                    new Object[] { ClpSerializer.translateInput(dataWorker) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.NoSuchModelException) {
+                throw (com.liferay.portal.NoSuchModelException) t;
+            }
 
             if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
                 throw (com.liferay.portal.kernel.exception.SystemException) t;
@@ -739,8 +747,8 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName20,
-                    _methodParameterTypes20, new Object[] {  });
+            returnObj = _invokableLocalService.invokeMethod(_methodName21,
+                    _methodParameterTypes21, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -766,8 +774,8 @@ public class WorkerLocalServiceClp implements WorkerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName21,
-                    _methodParameterTypes21, new Object[] { workerId });
+            returnObj = _invokableLocalService.invokeMethod(_methodName22,
+                    _methodParameterTypes22, new Object[] { workerId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

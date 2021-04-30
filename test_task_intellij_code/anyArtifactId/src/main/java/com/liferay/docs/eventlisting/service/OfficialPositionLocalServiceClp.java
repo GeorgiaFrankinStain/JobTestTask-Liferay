@@ -51,6 +51,8 @@ public class OfficialPositionLocalServiceClp
     private String[] _methodParameterTypes20;
     private String _methodName21;
     private String[] _methodParameterTypes21;
+    private String _methodName22;
+    private String[] _methodParameterTypes22;
 
     public OfficialPositionLocalServiceClp(
         InvokableLocalService invokableLocalService) {
@@ -148,15 +150,23 @@ public class OfficialPositionLocalServiceClp
 
         _methodName19 = "addOfficialPosition";
 
-        _methodParameterTypes19 = new String[] { "java.lang.String", "boolean" };
+        _methodParameterTypes19 = new String[] {
+                "Wrappers.OfficialPosition.DataOfficialPosition"
+            };
 
-        _methodName20 = "findAll";
+        _methodName20 = "updateOfficialPosition";
 
-        _methodParameterTypes20 = new String[] {  };
+        _methodParameterTypes20 = new String[] {
+                "Wrappers.OfficialPosition.DataOfficialPosition"
+            };
 
-        _methodName21 = "findById";
+        _methodName21 = "findAll";
 
-        _methodParameterTypes21 = new String[] { "long" };
+        _methodParameterTypes21 = new String[] {  };
+
+        _methodName22 = "findById";
+
+        _methodParameterTypes22 = new String[] { "long" };
     }
 
     @Override
@@ -678,16 +688,53 @@ public class OfficialPositionLocalServiceClp
 
     @Override
     public com.liferay.docs.eventlisting.model.OfficialPosition addOfficialPosition(
-        java.lang.String name, boolean isArchived)
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName19,
                     _methodParameterTypes19,
-                    new Object[] { ClpSerializer.translateInput(name), isArchived });
+                    new Object[] {
+                        ClpSerializer.translateInput(dataOfficialPosition)
+                    });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.docs.eventlisting.model.OfficialPosition) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public com.liferay.docs.eventlisting.model.OfficialPosition updateOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName20,
+                    _methodParameterTypes20,
+                    new Object[] {
+                        ClpSerializer.translateInput(dataOfficialPosition)
+                    });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.docs.eventlisting.NoSuchOfficialPositionException) {
+                throw (com.liferay.docs.eventlisting.NoSuchOfficialPositionException) t;
+            }
 
             if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
                 throw (com.liferay.portal.kernel.exception.SystemException) t;
@@ -710,8 +757,8 @@ public class OfficialPositionLocalServiceClp
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName20,
-                    _methodParameterTypes20, new Object[] {  });
+            returnObj = _invokableLocalService.invokeMethod(_methodName21,
+                    _methodParameterTypes21, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -738,8 +785,8 @@ public class OfficialPositionLocalServiceClp
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName21,
-                    _methodParameterTypes21, new Object[] { OfficialPositionId });
+            returnObj = _invokableLocalService.invokeMethod(_methodName22,
+                    _methodParameterTypes22, new Object[] { OfficialPositionId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

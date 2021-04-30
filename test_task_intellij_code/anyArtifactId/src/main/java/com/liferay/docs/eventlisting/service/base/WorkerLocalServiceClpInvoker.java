@@ -51,6 +51,8 @@ public class WorkerLocalServiceClpInvoker {
     private String[] _methodParameterTypes47;
     private String _methodName48;
     private String[] _methodParameterTypes48;
+    private String _methodName49;
+    private String[] _methodParameterTypes49;
 
     public WorkerLocalServiceClpInvoker() {
         _methodName0 = "addWorker";
@@ -145,20 +147,19 @@ public class WorkerLocalServiceClpInvoker {
 
         _methodName46 = "addWorker";
 
-        _methodParameterTypes46 = new String[] {
-                "java.lang.String", "java.lang.String", "java.lang.String",
-                "boolean", "java.util.Date", "java.lang.String",
-                "java.util.Date", "long", "java.lang.String", "java.lang.String",
-                "long", "long", "boolean"
-            };
+        _methodParameterTypes46 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName47 = "findAll";
+        _methodName47 = "updateWorker";
 
-        _methodParameterTypes47 = new String[] {  };
+        _methodParameterTypes47 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName48 = "findById";
+        _methodName48 = "findAll";
 
-        _methodParameterTypes48 = new String[] { "long" };
+        _methodParameterTypes48 = new String[] {  };
+
+        _methodName49 = "findById";
+
+        _methodParameterTypes49 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -264,27 +265,21 @@ public class WorkerLocalServiceClpInvoker {
 
         if (_methodName46.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-            return WorkerLocalServiceUtil.addWorker((java.lang.String) arguments[0],
-                (java.lang.String) arguments[1],
-                (java.lang.String) arguments[2],
-                ((Boolean) arguments[3]).booleanValue(),
-                (java.util.Date) arguments[4], (java.lang.String) arguments[5],
-                (java.util.Date) arguments[6],
-                ((Long) arguments[7]).longValue(),
-                (java.lang.String) arguments[8],
-                (java.lang.String) arguments[9],
-                ((Long) arguments[10]).longValue(),
-                ((Long) arguments[11]).longValue(),
-                ((Boolean) arguments[12]).booleanValue());
+            return WorkerLocalServiceUtil.addWorker((Wrappers.Worker.DataWorker) arguments[0]);
         }
 
         if (_methodName47.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-            return WorkerLocalServiceUtil.findAll();
+            return WorkerLocalServiceUtil.updateWorker((Wrappers.Worker.DataWorker) arguments[0]);
         }
 
         if (_methodName48.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+            return WorkerLocalServiceUtil.findAll();
+        }
+
+        if (_methodName49.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
             return WorkerLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 

@@ -240,13 +240,14 @@ public interface WorkerLocalService extends BaseLocalService,
         throws java.lang.Throwable;
 
     public com.liferay.docs.eventlisting.model.Worker addWorker(
-        java.lang.String name, java.lang.String lastname,
-        java.lang.String patronymic, boolean isMan, java.util.Date birthDate,
-        java.lang.String position, java.util.Date employmentDate,
-        long salaryLevel, java.lang.String workNumber,
-        java.lang.String telephoneNumber, long idBankService,
-        long officialPositionId, boolean isArchived)
-        throws com.liferay.portal.kernel.exception.SystemException;
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException;
+
+    public com.liferay.docs.eventlisting.model.Worker updateWorker(
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException;
 
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()
         throws com.liferay.portal.kernel.exception.SystemException;

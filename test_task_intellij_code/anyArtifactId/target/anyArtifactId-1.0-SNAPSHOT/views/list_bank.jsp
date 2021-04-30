@@ -52,7 +52,7 @@
         <liferay-ui:search-container-column-text>
             <portlet:renderURL var="viewEditPage">
                 <portlet:param name="bankId" value='<%=String.valueOf(bank.getBankId()) %>'/>
-                <portlet:param name="jspPage" value="/views/edit_entry.jsp"></portlet:param>
+                <portlet:param name="jspPage" value="/views/edit_bank.jsp"></portlet:param>
             </portlet:renderURL>
             <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>
             <liferay-ui:icon-menu>

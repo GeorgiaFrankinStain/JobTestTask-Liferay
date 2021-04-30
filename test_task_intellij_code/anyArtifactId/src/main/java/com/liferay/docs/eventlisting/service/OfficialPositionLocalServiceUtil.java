@@ -264,9 +264,16 @@ public class OfficialPositionLocalServiceUtil {
     }
 
     public static com.liferay.docs.eventlisting.model.OfficialPosition addOfficialPosition(
-        java.lang.String name, boolean isArchived)
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().addOfficialPosition(name, isArchived);
+        return getService().addOfficialPosition(dataOfficialPosition);
+    }
+
+    public static com.liferay.docs.eventlisting.model.OfficialPosition updateOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().updateOfficialPosition(dataOfficialPosition);
     }
 
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.OfficialPosition> findAll()
