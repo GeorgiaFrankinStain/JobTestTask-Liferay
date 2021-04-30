@@ -44,6 +44,12 @@ public class OfficialPositionLocalServiceImpl
         return officialPosition;
     }
 
+    public OfficialPosition deleteOfficialPosition(DataOfficialPosition dataOfficialPosition) throws SystemException, NoSuchOfficialPositionException {
+        OfficialPosition officialPosition = dataOfficialPosition.getUpdateOfficialPosition(officialPositionPersistence);
+        super.deleteOfficialPosition(officialPosition);
+        return officialPosition;
+    }
+
 
     public ArrayList<OfficialPosition> findAll() throws SystemException {
         ArrayList<OfficialPosition> result = new ArrayList<OfficialPosition>();

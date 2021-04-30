@@ -51,7 +51,9 @@
                 <portlet:param name="officialPositionId" value='<%=String.valueOf(officialPosition.getOfficialPositionId()) %>'/>
                 <portlet:param name="jspPage" value="/views/edit_official_position.jsp"></portlet:param>
             </portlet:renderURL>
-            <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>
+            <portlet:actionURL name="deleteOfficialPosition" var="deleteEntryURL">
+                <portlet:param name="officialPositionId" value='<%=String.valueOf(officialPosition.getOfficialPositionId()) %>'/>
+            </portlet:actionURL>
             <liferay-ui:icon-menu>
                 <liferay-ui:icon iconCssClass="icon-edit" message="Change" url='<%=viewEditPage%>'/>
                 <liferay-ui:icon iconCssClass="icon-trash" message="Delete" url="<%=deleteEntryURL%>"/>

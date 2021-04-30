@@ -276,6 +276,13 @@ public class OfficialPositionLocalServiceUtil {
         return getService().updateOfficialPosition(dataOfficialPosition);
     }
 
+    public static com.liferay.docs.eventlisting.model.OfficialPosition deleteOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().deleteOfficialPosition(dataOfficialPosition);
+    }
+
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.OfficialPosition> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().findAll();

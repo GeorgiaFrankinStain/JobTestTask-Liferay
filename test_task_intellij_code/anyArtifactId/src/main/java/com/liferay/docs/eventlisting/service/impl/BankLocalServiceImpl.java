@@ -40,6 +40,12 @@ public class BankLocalServiceImpl extends BankLocalServiceBaseImpl {
         return bank;
     }
 
+    public Bank deleteBank(DataBank dataBank) throws SystemException, NoSuchBankException {
+        Bank bank = dataBank.getUpdateBank(bankPersistence);
+        super.deleteBank(bank);
+        return bank;
+    }
+
     public ArrayList<Bank> findAll() throws SystemException {
         ArrayList<Bank> result = new ArrayList<Bank>();
         result.addAll(bankPersistence.findAll());

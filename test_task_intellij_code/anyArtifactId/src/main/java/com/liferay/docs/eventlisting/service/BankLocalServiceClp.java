@@ -52,6 +52,8 @@ public class BankLocalServiceClp implements BankLocalService {
     private String[] _methodParameterTypes21;
     private String _methodName22;
     private String[] _methodParameterTypes22;
+    private String _methodName23;
+    private String[] _methodParameterTypes23;
 
     public BankLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -154,13 +156,17 @@ public class BankLocalServiceClp implements BankLocalService {
 
         _methodParameterTypes20 = new String[] { "Wrappers.Bank.DataBank" };
 
-        _methodName21 = "findAll";
+        _methodName21 = "deleteBank";
 
-        _methodParameterTypes21 = new String[] {  };
+        _methodParameterTypes21 = new String[] { "Wrappers.Bank.DataBank" };
 
-        _methodName22 = "findById";
+        _methodName22 = "findAll";
 
-        _methodParameterTypes22 = new String[] { "long" };
+        _methodParameterTypes22 = new String[] {  };
+
+        _methodName23 = "findById";
+
+        _methodParameterTypes23 = new String[] { "long" };
     }
 
     @Override
@@ -735,13 +741,46 @@ public class BankLocalServiceClp implements BankLocalService {
     }
 
     @Override
+    public com.liferay.docs.eventlisting.model.Bank deleteBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName21,
+                    _methodParameterTypes21,
+                    new Object[] { ClpSerializer.translateInput(dataBank) });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.docs.eventlisting.NoSuchBankException) {
+                throw (com.liferay.docs.eventlisting.NoSuchBankException) t;
+            }
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (com.liferay.docs.eventlisting.model.Bank) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Bank> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName21,
-                    _methodParameterTypes21, new Object[] {  });
+            returnObj = _invokableLocalService.invokeMethod(_methodName22,
+                    _methodParameterTypes22, new Object[] {  });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -767,8 +806,8 @@ public class BankLocalServiceClp implements BankLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName22,
-                    _methodParameterTypes22, new Object[] { bankId });
+            returnObj = _invokableLocalService.invokeMethod(_methodName23,
+                    _methodParameterTypes23, new Object[] { bankId });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 

@@ -287,6 +287,14 @@ public class WorkerLocalServiceWrapper implements WorkerLocalService,
     }
 
     @Override
+    public com.liferay.docs.eventlisting.model.Worker deleteWorker(
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _workerLocalService.deleteWorker(dataWorker);
+    }
+
+    @Override
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return _workerLocalService.findAll();

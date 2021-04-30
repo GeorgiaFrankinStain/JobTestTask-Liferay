@@ -45,6 +45,12 @@ public class WorkerLocalServiceImpl extends WorkerLocalServiceBaseImpl {
         return worker;
     }
 
+    public Worker deleteWorker(DataWorker dataWorker) throws SystemException, NoSuchModelException {
+        Worker worker = dataWorker.getUpdatedWorker(workerPersistence);
+        super.deleteWorker(worker);
+        return worker;
+    }
+
 
     public ArrayList<Worker> findAll() throws SystemException {
         ArrayList<Worker> result = new ArrayList<Worker>();

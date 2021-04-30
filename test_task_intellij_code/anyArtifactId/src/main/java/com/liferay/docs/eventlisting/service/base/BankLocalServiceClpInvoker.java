@@ -53,6 +53,8 @@ public class BankLocalServiceClpInvoker {
     private String[] _methodParameterTypes48;
     private String _methodName49;
     private String[] _methodParameterTypes49;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
 
     public BankLocalServiceClpInvoker() {
         _methodName0 = "addBank";
@@ -153,13 +155,17 @@ public class BankLocalServiceClpInvoker {
 
         _methodParameterTypes47 = new String[] { "Wrappers.Bank.DataBank" };
 
-        _methodName48 = "findAll";
+        _methodName48 = "deleteBank";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes48 = new String[] { "Wrappers.Bank.DataBank" };
 
-        _methodName49 = "findById";
+        _methodName49 = "findAll";
 
-        _methodParameterTypes49 = new String[] { "long" };
+        _methodParameterTypes49 = new String[] {  };
+
+        _methodName50 = "findById";
+
+        _methodParameterTypes50 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -275,11 +281,16 @@ public class BankLocalServiceClpInvoker {
 
         if (_methodName48.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-            return BankLocalServiceUtil.findAll();
+            return BankLocalServiceUtil.deleteBank((Wrappers.Bank.DataBank) arguments[0]);
         }
 
         if (_methodName49.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+            return BankLocalServiceUtil.findAll();
+        }
+
+        if (_methodName50.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
             return BankLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 

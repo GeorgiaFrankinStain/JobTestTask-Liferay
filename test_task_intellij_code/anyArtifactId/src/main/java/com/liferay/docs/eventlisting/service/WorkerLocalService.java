@@ -249,6 +249,11 @@ public interface WorkerLocalService extends BaseLocalService,
         throws com.liferay.portal.NoSuchModelException,
             com.liferay.portal.kernel.exception.SystemException;
 
+    public com.liferay.docs.eventlisting.model.Worker deleteWorker(
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException;
+
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()
         throws com.liferay.portal.kernel.exception.SystemException;
 

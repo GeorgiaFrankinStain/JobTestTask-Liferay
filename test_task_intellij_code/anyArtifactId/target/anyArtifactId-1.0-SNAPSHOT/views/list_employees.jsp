@@ -67,7 +67,9 @@
                 <portlet:param name="workerId" value='<%= String.valueOf(worker.getWorkerId()) %>'/>
                 <portlet:param name="jspPage" value="/views/edit_entry.jsp"></portlet:param>
             </portlet:renderURL>
-            <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>
+            <portlet:actionURL name="deleteEmployee" var="deleteEntryURL">
+                <portlet:param name="workerId" value='<%= String.valueOf(worker.getWorkerId()) %>'/>
+            </portlet:actionURL>
             <liferay-ui:icon-menu>
                 <liferay-ui:icon iconCssClass="icon-edit" message="Change" url='<%=viewEditPage%>'/>
                 <liferay-ui:icon iconCssClass="icon-trash" message="Delete" url="<%=deleteEntryURL%>"/>

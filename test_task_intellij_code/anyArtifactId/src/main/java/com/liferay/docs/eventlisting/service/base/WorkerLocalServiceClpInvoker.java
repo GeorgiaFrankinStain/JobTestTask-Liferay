@@ -53,6 +53,8 @@ public class WorkerLocalServiceClpInvoker {
     private String[] _methodParameterTypes48;
     private String _methodName49;
     private String[] _methodParameterTypes49;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
 
     public WorkerLocalServiceClpInvoker() {
         _methodName0 = "addWorker";
@@ -153,13 +155,17 @@ public class WorkerLocalServiceClpInvoker {
 
         _methodParameterTypes47 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName48 = "findAll";
+        _methodName48 = "deleteWorker";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes48 = new String[] { "Wrappers.Worker.DataWorker" };
 
-        _methodName49 = "findById";
+        _methodName49 = "findAll";
 
-        _methodParameterTypes49 = new String[] { "long" };
+        _methodParameterTypes49 = new String[] {  };
+
+        _methodName50 = "findById";
+
+        _methodParameterTypes50 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -275,11 +281,16 @@ public class WorkerLocalServiceClpInvoker {
 
         if (_methodName48.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-            return WorkerLocalServiceUtil.findAll();
+            return WorkerLocalServiceUtil.deleteWorker((Wrappers.Worker.DataWorker) arguments[0]);
         }
 
         if (_methodName49.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+            return WorkerLocalServiceUtil.findAll();
+        }
+
+        if (_methodName50.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
             return WorkerLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 

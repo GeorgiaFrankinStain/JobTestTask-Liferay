@@ -52,9 +52,11 @@
         <liferay-ui:search-container-column-text>
             <portlet:renderURL var="viewEditPage">
                 <portlet:param name="bankId" value='<%=String.valueOf(bank.getBankId()) %>'/>
-                <portlet:param name="jspPage" value="/views/edit_bank.jsp"></portlet:param>
+                <portlet:param name="jspPage" value="/views/edit_bank.jsp" />
             </portlet:renderURL>
-            <portlet:actionURL var="deleteEntryURL"></portlet:actionURL>
+            <portlet:actionURL name="deleteBank" var="deleteEntryURL">
+                <portlet:param name="bankId" value='<%=String.valueOf(bank.getBankId()) %>'/>
+            </portlet:actionURL>
             <liferay-ui:icon-menu>
                 <liferay-ui:icon iconCssClass="icon-edit" message="Change" url='<%=viewEditPage%>'/>
                 <liferay-ui:icon iconCssClass="icon-trash" message="Delete" url="<%=deleteEntryURL%>"/>
@@ -71,10 +73,10 @@
 <aui:button-row cssClass="guestbook-buttons">
 
     <portlet:renderURL var="addEntryURL">
-        <portlet:param name="jspPage" value="/views/edit_bank.jsp"></portlet:param>
+        <portlet:param name="jspPage" value="/views/edit_bank.jsp" />
     </portlet:renderURL>
 
-    <aui:button onClick="<%= addEntryURL.toString() %>" value="Add Entry"></aui:button>
+    <aui:button onClick="<%= addEntryURL.toString() %>" value="Add Entry" />
 
 </aui:button-row>
 

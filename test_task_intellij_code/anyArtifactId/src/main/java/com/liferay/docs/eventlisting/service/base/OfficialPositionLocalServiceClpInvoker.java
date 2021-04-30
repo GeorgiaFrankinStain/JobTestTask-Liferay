@@ -53,6 +53,8 @@ public class OfficialPositionLocalServiceClpInvoker {
     private String[] _methodParameterTypes48;
     private String _methodName49;
     private String[] _methodParameterTypes49;
+    private String _methodName50;
+    private String[] _methodParameterTypes50;
 
     public OfficialPositionLocalServiceClpInvoker() {
         _methodName0 = "addOfficialPosition";
@@ -157,13 +159,19 @@ public class OfficialPositionLocalServiceClpInvoker {
                 "Wrappers.OfficialPosition.DataOfficialPosition"
             };
 
-        _methodName48 = "findAll";
+        _methodName48 = "deleteOfficialPosition";
 
-        _methodParameterTypes48 = new String[] {  };
+        _methodParameterTypes48 = new String[] {
+                "Wrappers.OfficialPosition.DataOfficialPosition"
+            };
 
-        _methodName49 = "findById";
+        _methodName49 = "findAll";
 
-        _methodParameterTypes49 = new String[] { "long" };
+        _methodParameterTypes49 = new String[] {  };
+
+        _methodName50 = "findById";
+
+        _methodParameterTypes50 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -279,11 +287,16 @@ public class OfficialPositionLocalServiceClpInvoker {
 
         if (_methodName48.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-            return OfficialPositionLocalServiceUtil.findAll();
+            return OfficialPositionLocalServiceUtil.deleteOfficialPosition((Wrappers.OfficialPosition.DataOfficialPosition) arguments[0]);
         }
 
         if (_methodName49.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+            return OfficialPositionLocalServiceUtil.findAll();
+        }
+
+        if (_methodName50.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
             return OfficialPositionLocalServiceUtil.findById(((Long) arguments[0]).longValue());
         }
 

@@ -284,6 +284,14 @@ public class BankLocalServiceWrapper implements BankLocalService,
     }
 
     @Override
+    public com.liferay.docs.eventlisting.model.Bank deleteBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _bankLocalService.deleteBank(dataBank);
+    }
+
+    @Override
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.Bank> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return _bankLocalService.findAll();

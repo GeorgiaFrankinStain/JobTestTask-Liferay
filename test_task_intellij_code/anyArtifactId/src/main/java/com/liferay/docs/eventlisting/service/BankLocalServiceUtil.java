@@ -274,6 +274,13 @@ public class BankLocalServiceUtil {
         return getService().updateBank(dataBank);
     }
 
+    public static com.liferay.docs.eventlisting.model.Bank deleteBank(
+        Wrappers.Bank.DataBank dataBank)
+        throws com.liferay.docs.eventlisting.NoSuchBankException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().deleteBank(dataBank);
+    }
+
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.Bank> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().findAll();

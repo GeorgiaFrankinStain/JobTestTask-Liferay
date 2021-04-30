@@ -4,11 +4,14 @@ import Wrappers.OfficialPosition.DataOfficialPosition;
 import Wrappers.OfficialPosition.DataOfficialPositionClass;
 import Wrappers.Worker.DataWorker;
 import Wrappers.Worker.DataWorkerClass;
+import com.liferay.docs.eventlisting.NoSuchBankException;
+import com.liferay.docs.eventlisting.NoSuchOfficialPositionException;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.BankLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.OfficialPositionLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil;
 import com.liferay.docs.eventlisting.service.impl.WorkerLocalServiceImpl;
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -34,6 +37,11 @@ public class ListEmployees extends MVCPortlet {
             WorkerLocalServiceUtil.updateWorker(dataWorker);
         }
     }
+    public void deleteEmployee(ActionRequest request, ActionResponse response) throws SystemException, NoSuchModelException {
+        DataWorker dataWorker = new DataWorkerClass(request);
+        WorkerLocalServiceUtil.deleteWorker(dataWorker);
+    }
+
     public void addBank(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
         DataBank dataBank = new DataBankClass(request);
         if (dataBank.isNew()) {
@@ -42,6 +50,12 @@ public class ListEmployees extends MVCPortlet {
             BankLocalServiceUtil.updateBank(dataBank);
         }
     }
+
+    public void deleteBank(ActionRequest request, ActionResponse response) throws SystemException, NoSuchBankException {
+        DataBank dataBank = new DataBankClass(request);
+        BankLocalServiceUtil.deleteBank(dataBank);
+    }
+
     public void addOfficialPosition(ActionRequest request, ActionResponse response) throws SystemException, PortalException {
         DataOfficialPosition dataOfficialPosition = new DataOfficialPositionClass(request);
         if (dataOfficialPosition.isNew()) {
@@ -49,5 +63,10 @@ public class ListEmployees extends MVCPortlet {
         } else {
             OfficialPositionLocalServiceUtil.updateOfficialPosition(dataOfficialPosition);
         }
+    }
+
+    public void deleteOfficialPosition(ActionRequest request, ActionResponse response) throws SystemException, NoSuchBankException, NoSuchOfficialPositionException {
+        DataOfficialPosition dataOfficialPosition = new DataOfficialPositionClass(request);
+        OfficialPositionLocalServiceUtil.deleteOfficialPosition(dataOfficialPosition);
     }
 }

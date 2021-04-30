@@ -277,6 +277,13 @@ public class WorkerLocalServiceUtil {
         return getService().updateWorker(dataWorker);
     }
 
+    public static com.liferay.docs.eventlisting.model.Worker deleteWorker(
+        Wrappers.Worker.DataWorker dataWorker)
+        throws com.liferay.portal.NoSuchModelException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return getService().deleteWorker(dataWorker);
+    }
+
     public static java.util.ArrayList<com.liferay.docs.eventlisting.model.Worker> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return getService().findAll();

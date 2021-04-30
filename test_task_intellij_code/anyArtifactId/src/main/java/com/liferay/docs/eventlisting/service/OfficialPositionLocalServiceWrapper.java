@@ -293,6 +293,14 @@ public class OfficialPositionLocalServiceWrapper
     }
 
     @Override
+    public com.liferay.docs.eventlisting.model.OfficialPosition deleteOfficialPosition(
+        Wrappers.OfficialPosition.DataOfficialPosition dataOfficialPosition)
+        throws com.liferay.docs.eventlisting.NoSuchOfficialPositionException,
+            com.liferay.portal.kernel.exception.SystemException {
+        return _officialPositionLocalService.deleteOfficialPosition(dataOfficialPosition);
+    }
+
+    @Override
     public java.util.ArrayList<com.liferay.docs.eventlisting.model.OfficialPosition> findAll()
         throws com.liferay.portal.kernel.exception.SystemException {
         return _officialPositionLocalService.findAll();
