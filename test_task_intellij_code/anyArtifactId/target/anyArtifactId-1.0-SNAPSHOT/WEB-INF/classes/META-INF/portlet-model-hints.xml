@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.docs.eventlisting.model.Bank">
+		<field name="bankId" type="long" />
+		<field name="name" type="String" />
+		<field name="bic" type="String" />
+		<field name="address" type="String" />
+	</model>
+	<model name="com.liferay.docs.eventlisting.model.OfficialPosition">
+		<field name="officialPositionId" type="long" />
+		<field name="name" type="String" />
+		<field name="is_archived" type="boolean" />
+	</model>
+	<model name="com.liferay.docs.eventlisting.model.Worker">
+		<field name="workerId" type="long" />
+		<field name="name" type="String" />
+		<field name="lastname" type="String" />
+		<field name="patronymic" type="String" />
+		<field name="gender" type="boolean" />
+		<field name="date_of_birth" type="Date" />
+		<field name="position" type="String" />
+		<field name="date_of_employment" type="Date" />
+		<field name="salary_level" type="long" />
+		<field name="work_number" type="String" />
+		<field name="telephone_number" type="String" />
+		<field name="archival_status" type="boolean" />
+		<field name="bankId" type="long" />
+		<field name="officialPositionId" type="long" />
+	</model>
+</model-hints>

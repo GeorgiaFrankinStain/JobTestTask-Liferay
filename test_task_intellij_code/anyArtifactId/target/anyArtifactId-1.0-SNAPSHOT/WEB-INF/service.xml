@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN"
+    "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+    <service-builder package-path="com.liferay.docs.eventlisting">
+        <author>Joe Bloggs</author>
+        <namespace>Event</namespace>
+
+        <entity name="Worker" local-service="true" remote-service="false">
+
+            <!-- PK fields -->
+
+            <column name="workerId" type="long" primary="true" />
+
+            <!-- Other fields -->
+
+            <column name="name" type="String" />
+            <column name="lastname" type="String" />
+            <column name="patronymic" type="String" />
+
+            <column name="gender" type="boolean"/>
+            <column name="date_of_birth" type="Date"/>
+            <column name="position" type="String"/>
+            <column name="date_of_employment" type="Date"/>
+            <column name="salary_level" type="long"/>
+            <column name="work_number" type="String"/>
+            <column name="telephone_number" type="String"/>
+            <column name="archival_status" type="boolean"/>
+            <column name="bankId" type="long"/>
+            <column name="officialPositionId" type="long"/>
+            <!-- Order -->
+<!--
+            <order by="asc">
+                    <order-column name="date" />
+            </order>-->
+
+            <!-- Finder methods -->
+
+            <finder name="BankId" return-type="Bank">
+                    <finder-column name="bankId" />
+            </finder>
+            <finder name="OfficialPositionId" return-type="OfficialPosition">
+                    <finder-column name="officialPositionId" />
+            </finder>
+        </entity>
+        <entity name="Bank" local-service="true" remote-service="false">
+
+            <!-- PK fields -->
+            <column name="bankId" type="long" primary="true" />
+
+            <!-- Other fields -->
+            <column name="name" type="String" />
+            <column name="bic" type="String" />
+            <column name="address" type="String" />
+        </entity>
+        <entity name="OfficialPosition" local-service="true" remote-service="false">
+            <!-- PK fields -->
+            <column name="officialPositionId" type="long" primary="true" />
+
+            <!-- Other fields -->
+            <column name="name" type="String" />
+            <column name="is_archived" type="boolean" />
+        </entity>
+    </service-builder>

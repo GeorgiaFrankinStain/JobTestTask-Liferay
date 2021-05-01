@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.docs.eventlisting.service.BankLocalService" class="com.liferay.docs.eventlisting.service.impl.BankLocalServiceImpl" />
+	<bean id="com.liferay.docs.eventlisting.service.persistence.BankPersistence" class="com.liferay.docs.eventlisting.service.persistence.BankPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.docs.eventlisting.service.OfficialPositionLocalService" class="com.liferay.docs.eventlisting.service.impl.OfficialPositionLocalServiceImpl" />
+	<bean id="com.liferay.docs.eventlisting.service.persistence.OfficialPositionPersistence" class="com.liferay.docs.eventlisting.service.persistence.OfficialPositionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.docs.eventlisting.service.WorkerLocalService" class="com.liferay.docs.eventlisting.service.impl.WorkerLocalServiceImpl" />
+	<bean id="com.liferay.docs.eventlisting.service.persistence.WorkerPersistence" class="com.liferay.docs.eventlisting.service.persistence.WorkerPersistenceImpl" parent="basePersistence" />
+</beans>
