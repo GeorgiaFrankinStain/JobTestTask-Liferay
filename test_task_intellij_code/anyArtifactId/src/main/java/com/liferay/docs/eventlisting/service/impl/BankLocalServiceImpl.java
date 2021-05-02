@@ -55,4 +55,6 @@ public class BankLocalServiceImpl extends BankLocalServiceBaseImpl {
     public Bank findById(long bankId) throws NoSuchBankException, SystemException {
         return bankPersistence.findByPrimaryKey(bankId);
     }
+
+
 }

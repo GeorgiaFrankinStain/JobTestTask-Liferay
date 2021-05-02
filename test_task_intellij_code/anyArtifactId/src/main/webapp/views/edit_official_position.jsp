@@ -18,9 +18,6 @@
 <%@ taglib prefix="liferay-util" uri="http://liferay.com/tld/util" %>
 <portlet:defineObjects/>
 
-<portlet:renderURL var="viewURL">
-    <portlet:param name="jspPage" value="/views/view2.jsp"></portlet:param>
-</portlet:renderURL>
 
 <%
     TextPresentationOfficialPosition textPresentationOfficialPosition = new DataOfficialPositionClass();
@@ -31,19 +28,22 @@
     request.setAttribute("entries", entries);
 %>
 
-<portlet:actionURL name="addOfficialPosition" var="addEntryURL"></portlet:actionURL>
-<aui:form action="<%= addEntryURL %>" name="<portlet:namespace />fm">
+<portlet:renderURL var="viewURL">
+    <portlet:param name="jspPage" value="/views/view2.jsp" />
+</portlet:renderURL>
 
+<portlet:actionURL name="addOfficialPosition" var="addEntryURL" />
+<aui:form action="<%= addEntryURL %>" name="<portlet:namespace />fm">
     <aui:fieldset>
         <aui:input name="officialPositionId" type="hidden" value="<%= textPresentationOfficialPosition.getIdText() %>"/>
-        <aui:input name="name" label="Name" value="<%= textPresentationOfficialPosition.getName() %>"></aui:input>
+        <aui:input name="name" label="Name" value="<%= textPresentationOfficialPosition.getName() %>" />
         <aui:input name="isArchived" label="Is arvhived" type="checkbox"
                    checked="<%= textPresentationOfficialPosition.isArchived() %>"/>
     </aui:fieldset>
 
     <aui:button-row>
-        <aui:button type="submit"></aui:button>
-        <aui:button type="cancel" onClick="<%= viewURL.toString() %>"></aui:button>
+        <aui:button type="submit" />
+        <aui:button type="cancel" onClick="<%= viewURL.toString() %>" />
     </aui:button-row>
 </aui:form>
 

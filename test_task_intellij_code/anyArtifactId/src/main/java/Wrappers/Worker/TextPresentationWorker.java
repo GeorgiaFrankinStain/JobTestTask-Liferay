@@ -1,5 +1,7 @@
 package Wrappers.Worker;
 
+import com.liferay.docs.eventlisting.NoSuchBankException;
+import com.liferay.docs.eventlisting.NoSuchOfficialPositionException;
 import com.liferay.docs.eventlisting.NoSuchWorkerException;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -20,6 +22,8 @@ public interface TextPresentationWorker {
     public boolean isMan();
     public String getDateBirthText();
     public String getPosition();
+    public String getBankTitle() throws NoSuchWorkerException, SystemException, NoSuchBankException;
+    public String getOfficialPositionTitle() throws NoSuchWorkerException, SystemException, NoSuchBankException, NoSuchOfficialPositionException;
     public String getDateEmploymentText();
     public String getSalaryLevelText();
     public String getWorkNumberText();

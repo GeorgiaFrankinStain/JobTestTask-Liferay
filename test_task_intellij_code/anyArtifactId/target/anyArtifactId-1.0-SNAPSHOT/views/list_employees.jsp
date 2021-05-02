@@ -17,7 +17,6 @@
  */
 --%>
 
-
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ taglib uri="http://alloy.liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
@@ -26,9 +25,41 @@
 <portlet:defineObjects />
 
 <%
-    ArrayList<Worker> entries = WorkerLocalServiceUtil.findAll();
-    request.setAttribute("entries", entries);
+    ArrayList<Worker> inputEntries = (ArrayList<Worker>) request.getAttribute("entries");
+
+    String dateStartText = "";
+    String dateEndText = "";
+    String foundName = "";
+    ArrayList<Worker> entries = null;
+    if (inputEntries == null) {
+        entries = WorkerLocalServiceUtil.findAll();
+        request.setAttribute("entries", entries);
+    } else {
+        request.setAttribute("entries", inputEntries);
+        dateStartText = (String) request.getAttribute("dateStart");
+        dateEndText = (String) request.getAttribute("dateEnd");
+        foundName = (String) request.getAttribute("foundName");
+    }
 %>
+
+
+<portlet:actionURL name="findWorkerFromCriteries" var="addEntryURL">
+    <portlet:param name="jspPage" value="/views/list_employees.jsp" />
+</portlet:actionURL>
+<aui:form action="<%= addEntryURL %>" name="<portlet:namespace />fm">
+    <aui:fieldset>
+        <aui:input name="dateStart" label="from birthday" type="date"
+                   value="<%= dateStartText %>"/>
+        <aui:input name="dateEnd" label="to birthday" type="date"
+                   value="<%= dateEndText %>"/>
+        <aui:input name="foundName" label="Found name" value="<%= foundName %>" />
+    </aui:fieldset>
+
+    <aui:button-row>
+        <aui:button type="submit"  />
+    </aui:button-row>
+</aui:form>
+
 
 <liferay-util:include page="/views/simple_list_employees.jsp" servletContext="<%= application%>" />
 

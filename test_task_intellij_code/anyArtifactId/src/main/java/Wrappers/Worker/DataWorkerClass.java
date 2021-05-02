@@ -1,6 +1,12 @@
 package Wrappers.Worker;
 
+import Wrappers.Bank.DataBankClass;
+import Wrappers.Bank.TextPresentationBank;
+import Wrappers.OfficialPosition.DataOfficialPositionClass;
+import Wrappers.OfficialPosition.TextPresentationOfficialPosition;
 import com.liferay.counter.service.CounterLocalService;
+import com.liferay.docs.eventlisting.NoSuchBankException;
+import com.liferay.docs.eventlisting.NoSuchOfficialPositionException;
 import com.liferay.docs.eventlisting.NoSuchWorkerException;
 import com.liferay.docs.eventlisting.model.Worker;
 import com.liferay.docs.eventlisting.service.WorkerLocalServiceUtil;
@@ -14,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DataWorkerClass implements DataWorker, TextPresentationWorker {
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private SimpleDateFormat formatForInputTag = new SimpleDateFormat("yyyy-MM-dd");
     private long workerId = 0;
     private String name = "";
@@ -77,6 +83,7 @@ public class DataWorkerClass implements DataWorker, TextPresentationWorker {
     public boolean isCurrentBankThisWorker(long bankId) {
         return bankId == this.bankOrganization;
     }
+
     @Override
     public boolean isCurrentOfficePositionThisWorker(long officialPositionId) {
         return officialPositionId == this.officialPositionId;
@@ -169,6 +176,7 @@ public class DataWorkerClass implements DataWorker, TextPresentationWorker {
     public Date getDateBirth() {
         return dateBirth;
     }
+
     public String getDateBirthText() {
         if (dateBirth != null) {
             return formatForInputTag.format(dateBirth);
@@ -275,10 +283,8 @@ public class DataWorkerClass implements DataWorker, TextPresentationWorker {
         worker.setLastname(this.getLastname());
         worker.setPatronymic(this.getPatronymic());
         worker.setGender(this.isMan());
-        System.out.println("========================== set before data");
 
         worker.setDate_of_birth(this.getDateBirth());
-        System.out.println("============================== set after date");
         worker.setPosition(this.getPosition());
         worker.setDate_of_employment(this.getDateEmployment());
         worker.setSalary_level(this.getSalaryLevel());
@@ -295,5 +301,19 @@ public class DataWorkerClass implements DataWorker, TextPresentationWorker {
         } else {
             return WorkerLocalServiceUtil.findById(workerId);
         }
+    }
+
+    @Override
+    public String getBankTitle() throws NoSuchWorkerException, SystemException, NoSuchBankException {
+        TextPresentationBank dataBank = new DataBankClass();
+        dataBank.trySetDataFromExitBank(bankOrganization);
+        return dataBank.getName();
+    }
+
+    @Override
+    public String getOfficialPositionTitle() throws NoSuchWorkerException, SystemException, NoSuchBankException, NoSuchOfficialPositionException {
+        TextPresentationOfficialPosition textPresentationOfficialPosition = new DataOfficialPositionClass();
+        textPresentationOfficialPosition.trySetDataFromExitOfficialPosition(officialPositionId);
+        return textPresentationOfficialPosition.getName();
     }
 }
